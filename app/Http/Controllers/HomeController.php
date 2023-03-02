@@ -18,7 +18,6 @@ class HomeController extends Controller
     }
     public function index(){
         $posts = $this->productService->products();
-        $categories =$this->categoryService->categories_home();
-        return view('home')->with(['posts'=>$posts,'categories'=> $categories]);
+        return view('home')->with(['posts'=>$posts]);
     }
 }

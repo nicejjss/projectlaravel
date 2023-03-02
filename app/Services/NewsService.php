@@ -5,15 +5,16 @@ namespace App\Services;
 
 
 
-use App\Models\Category;
+
+use App\Models\News;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class CategoryService{
+class NewsService{
 
-    public function categories_layout()
+    public function news_layout()
     {
-        return Category::where('home',1)->get();
+        return News::all();
     }
     public function create(array $data)
     {

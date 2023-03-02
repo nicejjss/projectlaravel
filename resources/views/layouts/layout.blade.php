@@ -127,7 +127,7 @@
                 <aside class="aside-category">
                     <h3><i class="fa fa-bars"></i>&nbsp;&nbsp; Danh mục sản phẩm</h3>
                     <ul class="list-unstyled">
-
+                        @include('frontend.category')
                     </ul>
                 </aside>
                 <!-- end category product -->
@@ -159,10 +159,7 @@
                         <div class="owl-home-blog owl-home-blog-sidebar">
 <!--                            list hot news-->
 
-                            <?php
-                            if (file_exists("controller/frontend/controller_news_layout.php"))
-                                include "controller/frontend/controller_news_layout.php";
-                            ?>
+                           @include('frontend.news_layout')
                             <!-- end list hot news -->
                         </div>
                     </div>
