@@ -17,7 +17,8 @@ class HomeController extends Controller
         $this->categoryService = $categoryService;
     }
     public function index(){
+        //TODO: sua sau khi co order
         $posts = $this->productService->products();
-        return view('home')->with(['posts'=>$posts]);
+        return view('home')->with(['products'=>$posts]);
     }
 }

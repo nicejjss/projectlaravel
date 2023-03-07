@@ -12,10 +12,10 @@ use Illuminate\Support\Facades\DB;
 
 class NewsService{
 
-    public function news_layout()
-    {
-        return News::all();
+    public  function index(){
+        return News::paginate(4);
     }
+
     public function create(array $data)
     {
 

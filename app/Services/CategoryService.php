@@ -11,14 +11,8 @@ use Illuminate\Support\Facades\DB;
 
 class CategoryService{
 
-    public function categories_layout()
-    {
-        return Category::where('home',1)->get();
-    }
     public function create(array $data)
     {
-
-
     }
 
     public function find($id)

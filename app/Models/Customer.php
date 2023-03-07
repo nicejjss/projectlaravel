@@ -11,4 +11,15 @@ class Customer extends Authenticatable
     use HasFactory;
     protected $table = 'customers';
     public $timestamps = false;
+    protected $fillable =[
+            'name',
+            'password',
+            'email',
+        'address',
+        'phone',
+    ];
+    protected $hidden =[
+      'password',
+      'email'
+    ];
 }

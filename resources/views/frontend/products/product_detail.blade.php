@@ -1,3 +1,5 @@
+@extends('layouts.layout')
+@section('content')
 <div class="product-detail" itemscope itemtype="http://schema.org/Product">
     <meta itemprop="url" content="//dktstore-theme.bizwebvietnam.net/microsoft-lumia-950-xl-mau-den">
     <meta itemprop="image" content="public/frontend/images/msc.jpg?v=1469340617533">
@@ -5,18 +7,19 @@
     <div class="top">
         <div class="row">
             <div class="col-xs-12 col-md-6 product-image">
-                <div class="featured-image"> <img src="public/upload/product/<?php echo $arr->c_img?>" class="img-responsive" id="large-image" itemprop="image" data-zoom-image="//bizweb.dktcdn.net/100/047/633/products/msc.jpg?v=1469340617533"
+                <div class="featured-image"> <img src="{{URL('assest/upload/product/'.$product->img)}}" class="img-responsive" id="large-image" itemprop="image" data-zoom-image="//bizweb.dktcdn.net/100/047/633/products/msc.jpg?v=1469340617533"
 
                                                   alt="MICROSOFT LUMIA 950 XL"
                     /> </div>
             </div>
             <div class="col-xs-12 col-md-6 info">
-                <h1 itemprop="name"><?php echo $arr->c_name?></h1>
-                <p class="sku">Mã sản phẩm:&nbsp; <span><?php echo $arr->pk_product_id?></span></p>
+                <h1 itemprop="name">{{$product->name}}</h1>
+                <p class="sku">Mã sản phẩm:&nbsp; <span>{{$product->id}}</span></p>
                 <p class="vendor">Nhà sản xuất:&nbsp; <span>MICROSOFT</span></p>
-                <p itemprop="price" class="price-box product-price-box"> <span class="special-price"> <span class="price product-price"> <?php echo number_format( $arr->c_price, 0, '', '.');?>₫ </span> </span> </p>
-                <p class="desc rte"><?php echo  $arr->c_description?></p>
-                <form action="index.php?controller=cart&act=add&id=<?php echo $arr->pk_product_id?>" method="post" enctype="multipart/form-data" class="product-form">
+                <p itemprop="price" class="price-box product-price-box"> <span class="special-price"> <span class="price product-price"> {{number_format($product->price, 0, '', '.')}}₫ </span> </span> </p>
+                <p class="desc rte">{{$product->description}}</p>
+                <form action="{{URL('cart/add/'.$product->id)}}" method="post" enctype="multipart/form-data" class="product-form">
+                    @csrf
 <!--                    <select id="product-selectors" name="variantId" style="display:none">-->
 <!--                        <option  selected="selected"  value="1853207">Đen - 15.990.000₫</option>-->
 <!--                        <option  value="1853286">Trắng - 14.500.000₫</option>-->
@@ -54,7 +57,7 @@
             <!-- chi tiet -->
             <div id="tab1" class="content-tabs">
                 <div class="rte">
-                    <p style="text-align: justify;"><?php echo $arr->c_content?></p>
+                    <p style="text-align: justify;">{{$product->content}}</p>
 <!--                    <p style="text-align: justify;"><strong>ĐẶC ĐIỂM NỔI BẬT</strong></p>-->
 <!--                    <ul>-->
 <!--                        <li style="text-align: justify;">Hệ điều hành Windows Phone 10 mới nhất, nhanh và tối ưu</li>-->
@@ -70,3 +73,4 @@
         </div>
     </div>
 </div>
+@endsection

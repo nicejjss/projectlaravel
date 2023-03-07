@@ -11,7 +11,7 @@ class Slider extends Model
     protected $table="sliders";
     public $timestamps = false;
 
-    public static function index(){
+    public function index(){
         return Slider::all();
     }
 }

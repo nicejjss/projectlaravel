@@ -17,7 +17,10 @@ class LoginController extends Controller
 
     public function check(LoginRequest $request)
     {
-        if(Auth::guard('customer')->attempt(['name'=>$request->input('name'),'password'=>$request->input('password')])){
+        $name = $request->input('name');
+        $password = $request->input('password');
+
+        if(Auth::guard('customer')->attempt(['name'=>$name,'password'=>$password])){
                return redirect()->intended();
            }
         else{

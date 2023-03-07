@@ -1,2 +1,6 @@
 <?php
-//TODO: lam con stant cho category
+//TODO: lam constant cho category
+return [
+    'HOME' => 1,
+    'PAGE' => 4,
+];

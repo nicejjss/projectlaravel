@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
+use App\Models\News;
+use App\Models\Slider;
 use App\Services\CategoryService;
 use App\Services\NewsService;
 use Illuminate\Support\Facades\View;
@@ -22,14 +25,21 @@ class LayoutServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $categoryservice = new CategoryService();
-        $news =new NewsService();
+        View::composer(['layouts.layout'],function ($view){
 
-        $categories = $categoryservice->categories_layout();
-        $news_list = $news->news_layout();
+            $news_list = (new News())->index();
+            $sliders = (new Slider())->index();
+            $categories = (new Category())->cateHome();
 
-        View::composer(['layouts.layout'],function ($view) use ($categories,$news_list) {
-            $view->with(['categories'=>$categories,'news'=>$news_list]);
+            $cart_products = session()->get('cart');
+            $total = 0;
+            if(!empty($cart_products)){
+                foreach ($cart_products as $cart_product){
+                    $total += $cart_product['quantity'];
+                }
+            }
+
+            $view->with(['categories'=>$categories,'news'=>$news_list,'sliders'=>$sliders,'total'=>$total,'cart_products'=>$cart_products]);
         });
     }
 }

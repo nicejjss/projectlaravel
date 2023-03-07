@@ -10,4 +10,8 @@ class Category extends Model
     use HasFactory;
     protected $table = 'categories';
     public $timestamps= false;
+
+    public function cateHome(){
+        return Category::where('home',1)->get();
+    }
 }

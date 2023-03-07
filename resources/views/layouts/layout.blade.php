@@ -54,15 +54,14 @@
                         {{--var id = <?php echo  $_SESSION["customer_id"]?>;--}}
                         // console.log("ID Uer: "+ id);
                     </script>
-                    <?php
-                    if (isset($_SESSION["customer_id"]) === false) { ?>
-                        <a href="index.php?controller=login"><i class="fa fa-user"></i> Đăng nhập</a>
-                        <a href="index.php?controller=register"><i class="fa fa-user-plus"></i> Đăng ký</a>
-                    <?php } else { ?>
-                        <a href="index.php?controller=customer&act=edit&id=<?php if(isset($_SESSION['customer_id']) ) echo $_SESSION["customer_id"] ?>"><i class="fa fa-user"></i><?php if(isset($_SESSION['customer_name']) ) echo $_SESSION["customer_name"] ?></a>
-                        <a href="index.php?controller=logout"><i class="fa fa-user"></i>Logout</a>
-
-                    <?php } ?>
+                   @auth('customer')
+                        <a href="index.php?controller=customer&act=edit&id=<?php if(isset($_SESSION['customer_id']) ) echo $_SESSION["customer_id"] ?>">
+                            <i class="fa fa-user"></i>{{auth('customer')->user()->name}}</a>
+                        <a href="{{URL('logout')}}"><i class="fa fa-user"></i>Logout</a>
+                    @else
+                        <a href="{{URL('login')}}"><i class="fa fa-user"></i> Đăng nhập</a>
+                        <a href="{{URL('register')}}"><i class="fa fa-user-plus"></i> Đăng ký</a>
+                    @endauth
                 </div>
             </div>
         </div>
@@ -78,18 +77,18 @@
                     <script type="text/javascript">
                         function search() {
                             key = document.getElementById("key").value;
-                            location.href = "index.php?controller=search&key=" + key;
+                            location.href = "search/" + key;
                             return false;
                         }
                     </script>
-                    <form method="post" action="">
+                    <form method="get" action="">
                         <input type="text" value="" placeholder="Nhập từ khóa tìm kiếm..." id="key"
                                class="input-control">
                         <button onclick="return search();" type="submit"><i class="fa fa-search" ></i></button>
                     </form>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-3 mini-cart">
-
+                                @include('frontend.mini_cart')
                 </div>
             </div>
         </div>
@@ -98,16 +97,16 @@
             <div class="container">
                 <div class="clearfix">
                     <ul class="main-nav hidden-xs hidden-sm list-unstyled">
-                        <li class="active"><a href="index.php">Trang chủ</a></li>
+                        <li class="active"><a href="/">Trang chủ</a></li>
                         <li><a href="index.php?controller=product">Sản phẩm</a></li>
                         <li><a href="index.php?controller=gioithieu">Giới thiệu</a></li>
-                        <li><a href="index.php?controller=news">Tin tức</a></li>
+                        <li><a href="{{URL('news')}}">Tin tức</a></li>
                         <li><a href="index.php?controller=lienhe">Liên hệ</a></li>
                     </ul>
                     <a href="javascript:void(0);" class="toggle-main-menu hidden-md hidden-lg"> <i
                             class="fa fa-bars"></i> </a>
                     <ul class="list-unstyled mobile-main-menu hidden-md hidden-lg" style="display:none">
-                        <li class="active"><a href="index.php">Trang chủ</a></li>
+                        <li class="active"><a href="/">Trang chủ</a></li>
                         <li><a href="index.php?controller=product">Sản phẩm</a></li>
                         <li><a href="index.php?controller=gioithieu">Giới thiệu</a></li>
                         <li><a href="index.php?controller=tintuc">Tin tức</a></li>
@@ -172,7 +171,7 @@
             </div>
             <div class="col-xs-12 col-md-9">
                 <!-- main -->
-                @yield('slider')
+              @include('frontend.slider')
                 @yield('content');
                 <!-- end main -->
             </div>
