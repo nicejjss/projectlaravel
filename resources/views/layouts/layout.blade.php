@@ -8,25 +8,25 @@
 
     <link rel="canonical" href="index.html">
     <link rel="shortcut icon"
-          href="../../public/frontend/100/047/633/themes/517833/assets/favicon221b.png?1481775169361"
+          href="../../../public/frontend/100/047/633/themes/517833/assets/favicon221b.png?1481775169361"
           type="image/x-icon"/>
     <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&amp;subset=vietnamese" rel="stylesheet"> -->
-    <link href='../../public/frontend/100/047/633/themes/517833/assets/font-awesome.min221b.css?1481775169361'
+    <link href='../../../public/frontend/100/047/633/themes/517833/assets/font-awesome.min221b.css?1481775169361'
           rel='stylesheet' type='text/css'/>
-    <link href='../../public/frontend/100/047/633/themes/517833/assets/bootstrap.min221b.css?1481775169361'
+    <link href='../../../public/frontend/100/047/633/themes/517833/assets/bootstrap.min221b.css?1481775169361'
           rel='stylesheet' type='text/css'/>
-    <link href='../../public/frontend/100/047/633/themes/517833/assets/owl.carousel221b.css?1481775169361'
+    <link href='../../../public/frontend/100/047/633/themes/517833/assets/owl.carousel221b.css?1481775169361'
           rel='stylesheet' type='text/css'/>
-    <link href='../../public/frontend/100/047/633/themes/517833/assets/responsive221b.css?1481775169361'
+    <link href='../../../public/frontend/100/047/633/themes/517833/assets/responsive221b.css?1481775169361'
           rel='stylesheet' type='text/css'/>
-    <link href='../../public/frontend/100/047/633/themes/517833/assets/styles.scss221b.css?1481775169361'
+    <link href='../../../public/frontend/100/047/633/themes/517833/assets/styles.scss221b.css?1481775169361'
           rel='stylesheet' type='text/css'/>
-    <script src='../../public/frontend/100/047/633/themes/517833/assets/jquery.min221b.js?1481775169361'
+    <script src='../../../public/frontend/100/047/633/themes/517833/assets/jquery.min221b.js?1481775169361'
             type='text/javascript'></script>
-    <script src='../../public/frontend/100/047/633/themes/517833/assets/bootstrap.min221b.js?1481775169361'
+    <script src='../../../public/frontend/100/047/633/themes/517833/assets/bootstrap.min221b.js?1481775169361'
             type='text/javascript'></script>
-    <script src='../../public/frontend/assets/themes_support/api.jquerya87f.js?4' type='text/javascript'></script>
-    <link href='../../public/frontend/100/047/633/themes/517833/assets/bw-statistics-style221b.css?1481775169361'
+    <script src='../../../public/frontend/assets/themes_support/api.jquerya87f.js?4' type='text/javascript'></script>
+    <link href='../../../public/frontend/100/047/633/themes/517833/assets/bw-statistics-style221b.css?1481775169361'
           rel='stylesheet' type='text/css'/>
     <script type="text/javascript" src="public/backend/ckeditor/ckeditor.js"></script>
 </head>
@@ -77,7 +77,8 @@
                     <script type="text/javascript">
                         function search() {
                             key = document.getElementById("key").value;
-                            location.href = "search/" + key;
+                            {{--url = {{URL('search')}};--}}
+                            location.href = 'search/'+key;
                             return false;
                         }
                     </script>
@@ -165,7 +166,7 @@
                 </div>
                 <!-- end hot news -->
                 <!-- adv -->
-                <img src="../../public/frontend/images/banner03d5.jpg">
+                <img src="../../../public/frontend/images/banner03d5.jpg">
                 <!-- end adv -->
 
             </div>
@@ -179,7 +180,7 @@
         </div>
         <!-- adv -->
         <div class="widebanner"><a href="#"><img
-                    src="../../public/frontend/100/047/633/themes/517833/assets/widebanner221b.jpg?1481775169361"
+                    src="../../../public/frontend/100/047/633/themes/517833/assets/widebanner221b.jpg?1481775169361"
                     alt="#" class="img-responsive"></a></div>
         <!-- end adv -->
 
@@ -190,7 +191,7 @@
         <div class="row">
             <div class="col-xs-12 col-sm-4">
                 <div class="image"><img
-                        src="../../public/frontend/100/047/633/themes/517833/assets/ico-service-1221b.png?1481775169361"
+                        src="../../../public/frontend/100/047/633/themes/517833/assets/ico-service-1221b.png?1481775169361"
                         alt="Giao hàng miễn phí" title="Giao hàng miễn phí" class="img-responsive"></div>
                 <div class="info">
                     <h3>Giao hàng miễn phí</h3>
@@ -199,7 +200,7 @@
             </div>
             <div class="col-xs-12 col-sm-4">
                 <div class="image"><img
-                        src="../../public/frontend/100/047/633/themes/517833/assets/ico-service-2221b.png?1481775169361"
+                        src="../../../public/frontend/100/047/633/themes/517833/assets/ico-service-2221b.png?1481775169361"
                         class="img-responsive" alt="Khuyến mại" title="Khuyến mại"></div>
                 <div class="info">
                     <h3>Khuyến mại</h3>
@@ -208,7 +209,7 @@
             </div>
             <div class="col-xs-12 col-sm-4">
                 <div class="image"><img
-                        src="../../public/frontend/100/047/633/themes/517833/assets/ico-service-3221b.png?1481775169361"
+                        src="../../../public/frontend/100/047/633/themes/517833/assets/ico-service-3221b.png?1481775169361"
                         class="img-responsive" alt="Hoàn trả lại tiền" title="Hoàn trả lại tiền"></div>
                 <div class="info">
                     <h3>Hoàn trả lại tiền</h3>
@@ -260,7 +261,7 @@
                 </div>
             </div>
             <div class="payments-method"><img
-                    src="../../public/frontend/100/047/633/themes/517833/assets/payments-method221b.png?1481775169361"
+                    src="../../../public/frontend/100/047/633/themes/517833/assets/payments-method221b.png?1481775169361"
                     alt="Phương thức thanh toán" title="Phương thức thanh toán"></div>
         </div>
     </div>
@@ -280,15 +281,15 @@
         </div>
     </div>
 </footer>
-<script src='../../public/frontend/100/047/633/themes/517833/assets/owl.carousel.min221b.js?1481775169361'
+<script src='../../../public/frontend/100/047/633/themes/517833/assets/owl.carousel.min221b.js?1481775169361'
         type='text/javascript'></script>
-<script src='../../public/frontend/100/047/633/themes/517833/assets/responsive-menu221b.js?1481775169361'
+<script src='../../../public/frontend/100/047/633/themes/517833/assets/responsive-menu221b.js?1481775169361'
         type='text/javascript'></script>
-<script src='../../public/frontend/100/047/633/themes/517833/assets/elevate-zoom221b.js?1481775169361'
+<script src='../../../public/frontend/100/047/633/themes/517833/assets/elevate-zoom221b.js?1481775169361'
         type='text/javascript'></script>
-<script src='../../public/frontend/100/047/633/themes/517833/assets/main221b.js?1481775169361'
+<script src='../../../public/frontend/100/047/633/themes/517833/assets/main221b.js?1481775169361'
         type='text/javascript'></script>
-<script src='../../public/frontend/100/047/633/themes/517833/assets/ajax-cart221b.js?1481775169361'
+<script src='../../../public/frontend/100/047/633/themes/517833/assets/ajax-cart221b.js?1481775169361'
         type='text/javascript'></script>
 <div class="ajax-error-modal modal">
     <div class="modal-inner">

@@ -21,7 +21,7 @@
                     <tbody>
                     @foreach($cart_products as $key=> $cart_product)
                         <tr>
-                            <td><img src="{{URL('assest/upload/product/'.$cart_product['img'])}}" class="img-responsive" /></td>
+                            <td><img src="{{URL('public/upload/product/'.$cart_product['img'])}}" class="img-responsive" /></td>
                             <td><a href="product/{{$cart_product['id']}}">{{$cart_product['name']}}</a></td>
                             <td> {{number_format($cart_product['price'],0,'','.')}}₫ </td>
                             <td><input type="number" id="qty" min="1" class="input-control" value="{{$cart_product['quantity']}}" name="{{$key}}" required="Không thể để trống"></td>

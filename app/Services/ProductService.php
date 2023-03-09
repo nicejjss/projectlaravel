@@ -15,14 +15,14 @@ class ProductService{
     //TODO: constant product per page
 
     public  function  findithSearch($data){
-        return Product::where('name','like','%'.$data.'%')->paginate(config('constants.PAGE'));
+        return Product::where('name','like','%'.$data.'%')->paginate(config('constants.ItemPerPage'));
     }
     public function products()
     {
-        return Product::paginate(config('constants.PAGE'));
+        return Product::paginate(config('constants.ItemPerPage'));
     }
     public  function showWithCate($id){
-        return Product::where('category_id',$id)->paginate(config('constants.PAGE'));
+        return Product::where('category_id',$id)->paginate(config('constants.ItemPerPage'));
     }
     //create product
     public function create(array $data)

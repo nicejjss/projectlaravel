@@ -14,7 +14,7 @@
                         <div class="product-grid" id="product-1168979">
                             <div class="image">
                                 <a href="{{URL('product/'.$product->id)}}">
-                                        <img title="Sản phẩm ..." alt="Sản phẩm 2" class="img-responsive" src="{{URL('assest/upload/product/'.$product->img)}}" style="max-width: 100px;">
+                                        <img title="Sản phẩm ..." alt="Sản phẩm 2" class="img-responsive" src="{{URL('public/upload/product/'.$product->img)}}" style="max-width: 100px;">
                                 </a>
                             </div>
                             <div class="info">

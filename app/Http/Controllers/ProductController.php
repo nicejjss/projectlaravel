@@ -9,30 +9,30 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     //
-    protected $productservice;
+    protected $productService;
 
-    public function __construct(ProductService $productservice)
+    public function __construct(ProductService $productService)
     {
-       $this->productservice = $productservice;
+       $this->productService = $productService;
     }
 
     public function index(){
-        $products = $this->productservice->products();
+        $products = $this->productService->products();
             return view('home')->with(['products'=>$products]);
     }
     public function showWithCate($id){
         $category = Category::where('id',$id)->first();
-        $products = $this->productservice->showWithCate($id);
+        $products = $this->productService->showWithCate($id);
         return view('frontend.products.products')->with(['products'=>$products,'category'=>$category]);
     }
 
     public function find($id){
-        $product = $this->productservice->find($id);
+        $product = $this->productService->find($id);
         return view('frontend.products.product_detail')->with(['product'=>$product]);
     }
 
     public function findWithSearch($data){
-        $products = $this->productservice->findithSearch($data);
+        $products = $this->productService->findithSearch($data);
         return view('frontend.search.search')->with(['search'=>$data,'products'=>$products]);
     }
 
