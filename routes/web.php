@@ -57,6 +57,4 @@ Route::controller(RegisterController::class)->group(function(){
    Route::post('/register','register');
 });
 
-
-
 Route::get('/news',[\App\Http\Controllers\NewsController::class,'index']);
