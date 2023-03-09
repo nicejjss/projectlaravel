@@ -4,15 +4,15 @@
 namespace App\Services;
 
 
-
-
 use App\Models\News;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class NewsService{
+class NewsService
+{
 
-    public  function index(){
+    public function index()
+    {
         return News::paginate(4);
     }
 

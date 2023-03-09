@@ -8,9 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class News extends Model
 {
     use HasFactory;
+
     protected $table = 'news';
     public $timestamps = false;
-    public function index(){
+
+    public static function index()
+    {
         return News::all();
     }
 }

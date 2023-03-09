@@ -8,10 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Slider extends Model
 {
     use HasFactory;
-    protected $table="sliders";
+
+    protected $table = "sliders";
     public $timestamps = false;
 
-    public function index(){
+    public static function index()
+    {
         return Slider::all();
     }
 }

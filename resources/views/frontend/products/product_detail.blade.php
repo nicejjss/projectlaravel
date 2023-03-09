@@ -7,7 +7,7 @@
     <div class="top">
         <div class="row">
             <div class="col-xs-12 col-md-6 product-image">
-                <div class="featured-image"> <img src="{{URL('public/upload/product/'.$product->img)}}" class="img-responsive" id="large-image" itemprop="image" data-zoom-image="//bizweb.dktcdn.net/100/047/633/products/msc.jpg?v=1469340617533"
+                <div class="featured-image"> <img src="{{asset('upload/product/'.$product->img)}}" class="img-responsive" id="large-image" itemprop="image" data-zoom-image="//bizweb.dktcdn.net/100/047/633/products/msc.jpg?v=1469340617533"
 
                                                   alt="MICROSOFT LUMIA 950 XL"
                     /> </div>

@@ -1,6 +1,8 @@
 <?php
-//TODO: lam constant cho category
-return [
-    'HOME' => 1,
-    'ItemPerPage' => 4,
-];
+
+if (!defined('PER_PAGE')) {
+    define('PER_PAGE', 4);
+}
+if(!defined('FLAG')){
+    define('FLAG',1);
+}

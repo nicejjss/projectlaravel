@@ -4,31 +4,27 @@
 namespace App\Services;
 
 
-
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 
-class ProductService{
-    //show product
-    //TODO: constant product per page
+class ProductService
+{
 
-    public  function  findithSearch($data){
-        return Product::where('name','like','%'.$data.'%')->paginate(config('constants.ItemPerPage'));
+    public function findWithSearch($data)
+    {
+        return Product::where('name', 'like', '%' . $data . '%')->paginate(PER_PAGE);
     }
+
     public function products()
     {
-        return Product::paginate(config('constants.ItemPerPage'));
+        return Product::paginate(PER_PAGE);
     }
-    public  function showWithCate($id){
-        return Product::where('category_id',$id)->paginate(config('constants.ItemPerPage'));
-    }
-    //create product
-    public function create(array $data)
+
+    public function showWithCate($id)
     {
-
-
+        return Product::where('category_id', $id)->paginate(PER_PAGE);
     }
 
     public function find($id)
@@ -36,18 +32,19 @@ class ProductService{
         return Product::find($id);
     }
 
-    public function update(array $data, int $id)
+    //create product
+    public function create(array $data)
     {
+
 
     }
 
-    public function remove($id)
+    public function hotProducts()
     {
-
+//        $products = Product::select('*','sum(order_details.number) as totalnumber')
+//            ->join('order_details','order_details.product_id','products.id')->groupBy(' products.id')->orderByDesc('totalnumber')->paginate(PER_PAGE);
+        dd(Product::find(14)->orders);
+        return $products;
     }
 
-    public function getPostsByType(int $type)
-    {
-
-    }
 }

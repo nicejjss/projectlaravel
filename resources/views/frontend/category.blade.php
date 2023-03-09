@@ -1,5 +1,5 @@
 @foreach($categories as $category)
-    <li><a href="/category/{{$category->id}}">{{$category->name}}</a></li>
+    <li><a href="{{route('category',$category->id)}}">{{$category->name}}</a></li>
 @endforeach
 
 

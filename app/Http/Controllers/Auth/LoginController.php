@@ -4,12 +4,20 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
+use App\Services\CustomerService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
     //
+    protected $customerService;
+
+    public function __construct(CustomerService $customerService)
+    {
+        $this->customerService = $customerService;
+    }
+
     public function login()
     {
         return view('frontend.auth.login');
@@ -17,14 +25,6 @@ class LoginController extends Controller
 
     public function check(LoginRequest $request)
     {
-        $name = $request->input('name');
-        $password = $request->input('password');
-
-        if(Auth::guard('customer')->attempt(['name'=>$name,'password'=>$password])){
-               return redirect()->intended();
-           }
-        else{
-            return view('frontend.auth.login')->with(['loginfail'=>"Sai tai KHoan"]);
-        }
+       return $this->customerService->login($request);
     }
 }

@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 @section('content')
 <h1>Hóa Đơn Thanh Toán</h1>
-<form method="post" action="checkout/pay" style="margin-top: 20px">
+<form method="post" action="{{route('pay')}}" style="margin-top: 20px">
     @csrf
     <label>Ho Ten: </label> <label>{{auth('customer')->user()->name}}</label>
     <br>
@@ -23,8 +23,8 @@
                     <tbody>
 @foreach($products as $product)
                         <tr>
-                            <td><img src="{{URL('assest/upload/product/'.$product['img'])}}" class="img-responsive" /></td>
-                            <td><a href="{{URL('product/'.$product['id'])}}">{{$product['name']}}</a></td>
+                            <td><img src="{{asset('upload/product/'.$product['img'])}}" class="img-responsive" /></td>
+                            <td><a href="{{route('product',$product['id'])}}">{{$product['name']}}</a></td>
                             <td> {{number_format($product['price'],0,'','.')}}₫ </td>
                             <td>{{$product['quantity']}}</td>
                             <td><p><b>{{number_format($product['price']*$product['quantity'],0,'','.')}}₫</b></p></td>

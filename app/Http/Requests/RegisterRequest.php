@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class LoginRequest extends FormRequest
+class RegisterRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,6 +13,7 @@ class LoginRequest extends FormRequest
     {
         return true;
     }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -21,15 +22,17 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>['required','max:20','min:1'],
-            'password'=>['required'],
+            'name' => 'required',
+            'phone' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'address' => 'required',
         ];
     }
     public function messages()
     {
         return [
-            '*.required'=>'Các trường :attribute phải có giá trị',
-            'name.max'=>'Gia tri khong qua :max',
+
         ];
     }
 

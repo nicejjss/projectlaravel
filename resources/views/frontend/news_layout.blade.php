@@ -3,7 +3,7 @@
     <div class="article"><a href="index.php?controller=news_detail&id={{$news_item->id}}}" class="image"> <img
                 alt="{{$news_item->title}}"
                 class="img-responsive"
-                src="{{URL('public/upload/news/'.$news_item->img)}}"
+                src="{{asset('upload/news/'.$news_item->img)}}"
                 title="{{$news_item->title}}"> </a>
         <div class="info">
             <h3><a href="index.php?controller=news_detail&id={{$news_item->id}}">{{$news_item->name}}</a></h3>

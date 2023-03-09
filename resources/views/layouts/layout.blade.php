@@ -57,10 +57,10 @@
                    @auth('customer')
                         <a href="index.php?controller=customer&act=edit&id=<?php if(isset($_SESSION['customer_id']) ) echo $_SESSION["customer_id"] ?>">
                             <i class="fa fa-user"></i>{{auth('customer')->user()->name}}</a>
-                        <a href="{{URL('logout')}}"><i class="fa fa-user"></i>Logout</a>
+                        <a href="{{route('logout')}}"><i class="fa fa-user"></i>Logout</a>
                     @else
-                        <a href="{{URL('login')}}"><i class="fa fa-user"></i> Đăng nhập</a>
-                        <a href="{{URL('register')}}"><i class="fa fa-user-plus"></i> Đăng ký</a>
+                        <a href="{{route('login')}}"><i class="fa fa-user"></i> Đăng nhập</a>
+                        <a href="{{route('register')}}"><i class="fa fa-user-plus"></i> Đăng ký</a>
                     @endauth
                 </div>
             </div>
@@ -101,7 +101,7 @@
                         <li class="active"><a href="/">Trang chủ</a></li>
                         <li><a href="index.php?controller=product">Sản phẩm</a></li>
                         <li><a href="index.php?controller=gioithieu">Giới thiệu</a></li>
-                        <li><a href="{{URL('news')}}">Tin tức</a></li>
+                        <li><a href="{{route('news')}}">Tin tức</a></li>
                         <li><a href="index.php?controller=lienhe">Liên hệ</a></li>
                     </ul>
                     <a href="javascript:void(0);" class="toggle-main-menu hidden-md hidden-lg"> <i

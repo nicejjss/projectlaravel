@@ -18,11 +18,11 @@
                 <div class="item {{$slider->id == 1 ? 'active' : ''}}"><img src="../../{{$slider->img}}"
                                               alt="{{$slider->name}}"></div>
             @endforeach
-<!--                <div class="item"><img src="../../public/frontend/images/slideshow1221b.jpg"-->
+<!--                <div class="item"><img src="../../asset/frontend/images/slideshow1221b.jpg"-->
 <!--                                       alt="Los Angeles"></div>-->
-<!--                <div class="item"><img src="../../public/frontend/images/chicago.jpg" alt="Chicago">-->
+<!--                <div class="item"><img src="../../asset/frontend/images/chicago.jpg" alt="Chicago">-->
 <!--                </div>-->
-<!--                <div class="item"><img src="../../public/frontend/images/ny.jpg" alt="New York"></div>-->
+<!--                <div class="item"><img src="../../asset/frontend/images/ny.jpg" alt="New York"></div>-->
             </div>
 
             <!-- Left and right controls -->

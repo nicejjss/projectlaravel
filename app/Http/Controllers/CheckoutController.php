@@ -9,25 +9,25 @@ use Illuminate\Http\Request;
 class CheckoutController extends Controller
 {
     //
-    protected $cartservice;
-    protected $checkoutservice;
-    public function __construct(CartService $cartService,CheckoutService $checkoutservice)
+    protected $cartService;
+    protected $checkoutService;
+
+    public function __construct(CartService $cartService, CheckoutService $checkoutService)
     {
-        $this->middleware('customer');
-        $this->cartservice = $cartService;
-        $this->checkoutservice = $checkoutservice;
-    }
-    public function index(){
-        $products = $this->cartservice->index();
-        $total =0;
-        if(!empty($products)){
-            $total = $this->cartservice->totlaPrice();
-        }
-        return view('frontend.checkout.checkout')->with(['products'=>$products,'total'=>$total]);
+        $this->cartService = $cartService;
+        $this->checkoutService = $checkoutService;
     }
 
-    public function pay(){
-        $products = $this->cartservice->index();
-        return view('frontend.checkout.checkout')->with(['products'=>$products]);
+    public function index()
+    {
+        $products = $this->cartService->index();
+        $total = $this->cartService->totlaPrice($products);
+        return view('frontend.checkout.checkout')->with(['products' => $products, 'total' => $total]);
+    }
+
+    public function pay()
+    {
+        $products = $this->checkoutService->pay();
+        return view('frontend.checkout.checkout')->with(['products' => $products]);
     }
 }
