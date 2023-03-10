@@ -30,10 +30,13 @@ class CategoryService
         return $categories;
     }
 
-    public function add()
+    public function add($request)
     {
-
-
+        $data = $request->all();
+        Category::create([
+            'name' => $data['name'],
+            'home' =>0,
+        ]);
     }
 
     public function delete($id)
