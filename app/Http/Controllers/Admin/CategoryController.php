@@ -21,4 +21,8 @@ class CategoryController extends Controller
         return view('admin.categories.categories')->with(['categories'=>$categories]);
     }
 
+    public function delete($id){
+        $this->categoryService->delete($id);
+        return redirect()->route('admin.categories');
+    }
 }

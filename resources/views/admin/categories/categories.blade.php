@@ -1,7 +1,7 @@
 @extends('layouts.admin.layout')
 @section('content')
 <div class="col-md-10 col-md-offset-1">
-	<div style="margin-bottom: 5px;"><a href="admin.php?controller=add_edit_category_product&act=add" class="btn btn-primary">Add</a></div>
+	<div style="margin-bottom: 5px;"><a href="{{route('admin.category.add')}}" class="btn btn-primary">Add</a></div>
 	<div class="panel panel-primary">
 		<div class="panel-heading">Danh Mục Sản Phẩm</div>
 		<div class="panel-body">
@@ -15,16 +15,16 @@
 				</tr>
                 @foreach($categories as $category)
 				<tr>
-					<td>{{$category->name}}</td>
+					<td>{{$category['name']}}</td>
 					<td style="text-align: center;">
-                        @if($category->home)
+                        @if($category['home'])
 						<span class="glyphicon glyphicon-check"></span>
                         @endif
 					</td>
-                    <td>{{$category->total_number}}</td>
+                    <td>{{$category['total_number']}}</td>
 					<td style="text-align: center;">
-						<a href="{{route('admin.category.edit',['id'=>$category->id])}}">Edit</a>&nbsp;&nbsp;
-						<a onclick="return window.confirm('Are you sure?');" href="{{route('admin.category.delete',['id'=>$category->id])}}">Delete</a>
+						<a href="{{route('admin.category.edit',['id'=>$category['id']])}}">Edit</a>&nbsp;&nbsp;
+						<a onclick="return window.confirm('Are you sure?');" href="{{route('admin.category.delete',['id'=>$category['id']])}}">Delete</a>
 					</td>
 				</tr>
                 @endforeach
@@ -32,6 +32,9 @@
 			<ul class="pagination" style="padding:0px; margin:0px;">
 				<li><a href="#">Trang</a></li>
 {{--				<li><a href="admin.php?controller=category_product&p=<?php echo $i; ?>"><?php echo $i; ?></a></li>--}}
+                @for($i=1;$i<=$categories->lastPage();$i++)
+                    <li><a href="{{route('admin.categories',['page'=>$i])}}">{{$i}}</a></li>
+                @endfor
 			</ul>
 		</div>
 	</div>
