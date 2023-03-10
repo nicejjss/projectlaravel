@@ -3,8 +3,8 @@
 <head>
     <title>Admin</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="public/backend/css/bootstrap.min.css">
-    <script type="text/javascript" src="public/backend/ckeditor/ckeditor.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{asset('backend/css/bootstrap.min.css')}}">
+    <script type="text/javascript" src="{{asset('backend/ckeditor/ckeditor.js')}}/"></script>
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -21,12 +21,12 @@
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Home</a></li>
-                <li class="active"><a href="{{route('admin.hello')}}">Danh mục sản phẩm</a></li>
+                <li class="active"><a href="{{route('admin.categories')}}">Danh mục sản phẩm</a></li>
                 <li class="active"><a href="admin.php?controller=product">Danh sách sản phẩm</a></li>
                 <li class="active"><a href="admin.php?controller=news">Tin tức</a></li>
                 <li class="active"><a href="admin.php?controller=order">Đơn hàng</a></li>
                 <li class="active"><a href="admin.php?controller=customer">Customer</a></li>
-                <li class="active"><a href="admin.php?controller=logout">Logout</a></li>
+                <li class="active"><a href="{{route('admin.logout')}}">Logout</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>

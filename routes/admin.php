@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\Auth\LoginController;
+use App\Http\Controllers\Admin\Auth\LogoutController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,15 +17,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-use \App\Http\Controllers\HomeController;
+
 
 Route::prefix('admin')->group(function () {
 
     Route::middleware('auth.user')->group(function () {
+
         Route::get("/", [HomeController::class,'index'])->name('admin.home');
+
     });
 
-    Route::get('/hello', function () {
-        return 'Hello';
-    })->name('admin.hello');
+    Route::controller(LoginController::class)->group(function (){
+       Route::get('/login','login')->name('admin.login');
+       Route::post('login','check');
+    });
+
+    Route::controller(CategoryController::class)->group(function (){
+
+        Route::get('/categories','index')->name('admin.categories');
+        Route::get('/category/edit/{id?}','edit')->name('admin.category.edit');
+        Route::get('/category/delete/{id?}','detele')->name('admin.category.delete');
+    });
+
+    Route::get('/logout',[LogoutController::class,'logout'])->name('admin.logout');
 });
