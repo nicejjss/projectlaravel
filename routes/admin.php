@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('admin')->group(function (){
-    Route::get('/hello',function (){
-        return "Hello";
+
+    Route::middleware('auth.user')->group(function (){
+
     });
 });
