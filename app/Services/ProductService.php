@@ -4,10 +4,12 @@
 namespace App\Services;
 
 
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
+use function Symfony\Component\Console\Style\table;
 
 class ProductService
 {
@@ -41,9 +43,16 @@ class ProductService
 
     public function hotProducts()
     {
-//        $products = Product::select('*','sum(order_details.number) as totalnumber')
-//            ->join('order_details','order_details.product_id','products.id')->groupBy(' products.id')->orderByDesc('totalnumber')->paginate(PER_PAGE);
-        dd(Product::find(14)->orders);
+        config()->set('database.connections.mysql.strict', false);
+        DB::reconnect();
+
+        $products = Product::select('*', DB::raw('sum(order_details.number) as totalnumber'))
+            ->join('order_details', 'order_details.product_id', 'products.id')->groupBy('products.id')->orderByDesc('totalnumber')->get();
+
+        config()->set('database.connections.mysql.strict', true);
+        DB::reconnect();
+
+        dd($products->chunk);
         return $products;
     }
 

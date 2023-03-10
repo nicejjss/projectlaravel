@@ -37,11 +37,11 @@ Route::controller(ProductController::class)->group(function () {
 Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 Route::middleware('auth.customer')->controller(CartController::class)->group(function () {
-    Route::post('/cart/add/{id?}', 'add');
-    Route::get('/cart', 'index');
+    Route::post('/cart/add/{id?}', 'add')->name('cart.add');
+    Route::get('/cart', 'index')->name('cart');
     Route::post('cart/update', 'update');
-    Route::get('cart/destroy', 'destroy');
-    Route::get('cart/delete/{id?}', 'delete');
+    Route::get('cart/destroy', 'destroy')->name('cart.destroy');
+    Route::get('cart/delete/{id?}', 'delete')->name('cart.delete');
 });
 
 Route::middleware('auth.customer')->controller(CheckoutController::class)->group(function () {

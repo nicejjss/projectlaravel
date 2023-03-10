@@ -27,7 +27,7 @@ class CheckoutController extends Controller
 
     public function pay()
     {
-        $products = $this->checkoutService->pay();
-        return view('frontend.checkout.checkout')->with(['products' => $products]);
+        $this->checkoutService->pay();
+        return redirect()->route('cart');
     }
 }

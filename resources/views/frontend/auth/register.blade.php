@@ -40,7 +40,7 @@
             <div class="wrapper-form">
                 <p class="title"><span>Tạo tài khoản mới</span></p>
                 <p>Đăng ký tài khoản để mua hàng nhanh hơn. Theo dõi đơn đặt hàng, vận chuyển. Cập nhật các sự kiện và chương trình giảm giá của chúng tôi.</p>
-                <a href="{{URL('login')}}" class="button">Đăng Nhap</a> </div>
+                <a href="{{route('login')}}" class="button">Đăng Nhap</a> </div>
         </div>
     </div>
 </div>

@@ -26,7 +26,7 @@ class CartController extends Controller
     {
         $cartProducts = $this->cartService->index();
         $total = $this->cartService->totlaPrice($cartProducts);
-        return view('frontend.cart.cart')->with(['cart_products' => $cartProducts, 'total' => $total]);
+        return view('frontend.cart.cart')->with(['cartProducts' => $cartProducts, 'total' => $total]);
     }
 
     public function add($id, Request $request)

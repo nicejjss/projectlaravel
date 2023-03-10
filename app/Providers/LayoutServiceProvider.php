@@ -27,18 +27,18 @@ class LayoutServiceProvider extends ServiceProvider
     {
         View::composer(['layouts.layout'], function ($view) {
 
-            $news_list = News::index();
+            $newsList = News::index();
             $sliders = Slider::index();
             $categories = Category::cateHome();
-            $cart_products = session()->get('cart');
+            $cartProducts = session()->get('cart');
             $total = 0;
-            if (!empty($cart_products)) {
-                foreach ($cart_products as $cart_product) {
-                    $total += $cart_product['quantity'];
+            if (!empty($cartProducts)) {
+                foreach ($cartProducts as $cartProduct) {
+                    $total += $cartProduct['quantity'];
                 }
             }
 
-            $view->with(['categories' => $categories, 'news' => $news_list, 'sliders' => $sliders, 'total' => $total, 'cart_products' => $cart_products]);
+            $view->with(['categories' => $categories, 'news' => $newsList, 'sliders' => $sliders, 'total' => $total, 'cartProducts' => $cartProducts]);
         });
     }
 }

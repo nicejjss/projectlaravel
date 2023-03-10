@@ -13,7 +13,7 @@ class ProductController extends Controller
     protected $productService;
     protected $categoryService;
 
-    public function __construct(ProductService $productService,CategoryService $categoryService)
+    public function __construct(ProductService $productService, CategoryService $categoryService)
     {
         $this->productService = $productService;
         $this->categoryService = $categoryService;
@@ -43,7 +43,10 @@ class ProductController extends Controller
         $products = $this->productService->findWithSearch($data);
         return view('frontend.search.search')->with(['search' => $data, 'products' => $products]);
     }
-    public function hotProducts(){
+
+    //TODO: hot product
+    public function hotProducts()
+    {
         $products = $this->productService->hotProducts();
     }
 }

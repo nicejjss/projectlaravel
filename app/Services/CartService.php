@@ -17,12 +17,22 @@ class CartService
         return session()->get('cart');
     }
 
-    public function totlaPrice($cartProducts)
+    public function checkExist($cartProduct)
+    {
+        if (empty($cartProduct)) {
+            return false;
+        }
+        return true;
+    }
+
+    public function totlaPrice($cartProduct)
     {
         $total = 0;
-        foreach (session()->get('cart') as $ket => $product) {
-            $eachprice = $product['price'] * $product['quantity'];
-            $total += $eachprice;
+        if ($this->checkExist($cartProduct)) {
+            foreach ($cartProduct as $ket => $product) {
+                $eachprice = $product['price'] * $product['quantity'];
+                $total += $eachprice;
+            }
         }
         return $total;
     }

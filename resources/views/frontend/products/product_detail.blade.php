@@ -18,7 +18,7 @@
                 <p class="vendor">Nhà sản xuất:&nbsp; <span>MICROSOFT</span></p>
                 <p itemprop="price" class="price-box product-price-box"> <span class="special-price"> <span class="price product-price"> {{number_format($product->price, 0, '', '.')}}₫ </span> </span> </p>
                 <p class="desc rte">{{$product->description}}</p>
-                <form action="{{URL('cart/add/'.$product->id)}}" method="post" enctype="multipart/form-data" class="product-form">
+                <form action="{{route('cart.add',['id'=>$product->id])}}" method="post" enctype="multipart/form-data" class="product-form">
                     @csrf
 <!--                    <select id="product-selectors" name="variantId" style="display:none">-->
 <!--                        <option  selected="selected"  value="1853207">Đen - 15.990.000₫</option>-->

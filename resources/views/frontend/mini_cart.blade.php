@@ -7,12 +7,12 @@
                 @if($total <= 0)
                     <p>Khong co san pham</p>
                     @else
-                    @foreach($cart_products as $cart_product)
+                    @foreach($cartProducts as $cartProduct)
                         <li class="clearfix" id="item-1853038">
-                            <div class="image"> <a href="{{URL('product/'.$cart_product['id'])}}"> <img alt="" src="{{URL('asset/upload/product/'.$cart_product['img'])}}" title="" class="img-responsive"> </a> </div>
+                            <div class="image"> <a href="{{URL('product/'.$cartProduct['id'])}}"> <img alt="" src="{{URL('asset/upload/product/'.$cartProduct['img'])}}" title="" class="img-responsive"> </a> </div>
                             <div class="info">
-                                <h3><a href="{{URL('product/'.$cart_product['id'])}}">{{$cart_product['name']}}</a></h3>
-                                <p>{{$cart_product['quantity']}} x {{ number_format($cart_product["price"],0,'','.')}}₫</p>
+                                <h3><a href="{{URL('product/'.$cartProduct['id'])}}">{{$cartProduct['name']}}</a></h3>
+                                <p>{{$cartProduct['quantity']}} x {{ number_format($cartProduct["price"],0,'','.')}}₫</p>
                             </div>
                             <div> <a href="{{route('pay')}}"> <i class="fa fa-times"></i></a> </div>
                         </li>

@@ -19,7 +19,7 @@ class HomeController extends Controller
     public function index()
     {
         //TODO: sua sau khi co order
-        $products = $this->productService->products();
+        $products = $this->productService->hotProducts();
         return view('home')->with(['products' => $products]);
     }
 }

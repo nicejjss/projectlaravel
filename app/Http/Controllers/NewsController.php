@@ -14,7 +14,7 @@ class NewsController extends Controller
     }
 
     public function index(){
-        $list_new = $this->newsService->index();
-        return view('frontend.news.news')->with('list_news',$list_new);
+        $listNews = $this->newsService->index();
+        return view('frontend.news.news')->with('listNews',$listNews);
     }
 }

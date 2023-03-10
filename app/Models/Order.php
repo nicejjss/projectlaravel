@@ -14,9 +14,12 @@ class Order extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class,'order_details','product_id','order_id');
+        return $this->belongsToMany(Product::class,'order_details','product_id','order_id')->withPivot('number');
     }
     protected $fillable=[
         'customer_id',
+        'ngaymua',
+        'gia',
+        'trangthai'
     ];
 }
