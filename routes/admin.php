@@ -13,9 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('admin')->group(function (){
+use \App\Http\Controllers\HomeController;
 
-    Route::middleware('auth.user')->group(function (){
+Route::prefix('admin')->group(function () {
 
+    Route::middleware('auth.user')->group(function () {
+        Route::get("/", [HomeController::class,'index'])->name('admin.home');
     });
+
+    Route::get('/hello', function () {
+        return 'Hello';
+    })->name('admin.hello');
 });
