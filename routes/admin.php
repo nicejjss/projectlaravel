@@ -44,15 +44,23 @@ Route::prefix('admin')->group(function () {
             Route::get('/category/delete/{id?}', 'delete')->name('admin.category.delete');
         });
 
-
-        Route::controller(ProductController::class)->group(function (){
-
-           Route::get('/products','index')->name('admin.products');
-
-
-        });
-
     });
 
     Route::get('/logout', [LogoutController::class, 'logout'])->name('admin.logout');
+
+
+    Route::controller(ProductController::class)->group(function () {
+        Route::get('/products', 'index')->name('admin.products');
+
+        Route::get('/product/add', 'addView')->name('admin.product.add');
+        Route::post('/product/add', 'add');
+
+        Route::get('/product/edit/{id?}','editView')->name('admin.product.edit');
+        Route::put('/product/edit/{id?}','edit');
+
+
+        Route::get('/products/delete/{id?}', 'delete')->name('admin.product.delete');
+
+
+    });
 });
