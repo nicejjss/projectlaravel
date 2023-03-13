@@ -35,7 +35,21 @@ class CategoryService
         $data = $request->all();
         Category::create([
             'name' => $data['name'],
-            'home' =>0,
+            'home' => 0,
+        ]);
+    }
+
+    public function view($id)
+    {
+        $category = Category::find($id);
+        return $category;
+    }
+
+    public function edit($request, $category)
+    {
+        $category->update([
+            'name' => $request->input('name'),
+            'home' => $request->input('home'),
         ]);
     }
 

@@ -9,7 +9,10 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-3">Tên Danh Mục </div>
-                        <div class="col-md-9"><input type="text" name="c_name" required class="form-control"></div>
+                        <div class="col-md-9"><input type="text" name="name" required class="form-control"></div>
+                        @error('name')
+                          <p style="color: red">{{$message}}</p>
+                        @enderror
                     </div>
                     <div class="row" style="margin-top:5px;">
                         <div class="col-md-2"></div>
