@@ -21,7 +21,7 @@
                     <td>{{$product->category_name}}</td>
                     <td><p><b>{{number_format($product->price,'0','','.')}}₫</b></p></td>
                     <td style="text-align: center;">
-                        <a href="">Edit</a>&nbsp;&nbsp;
+                        <a href="{{route('admin.product.edit',['id' =>$product->id])}}">Edit</a>&nbsp;&nbsp;
                         <a onclick="return window.confirm('Are you sure?');" href="{{route('admin.product.delete',['id'=>$product->id])}}">Delete</a>
                     </td>
                 </tr>

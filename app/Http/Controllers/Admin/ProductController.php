@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Services\CategoryService;
 use App\Services\ProductService;
@@ -35,6 +36,20 @@ class ProductController extends Controller
     {
 
         $this->productService->add($request);
+        return redirect()->route('admin.products');
+    }
+
+    public function editView($id)
+    {
+        $product = $this->productService->view($id);
+        $listCate = $this->categoryService->getAll();
+        return view('admin.products.edit')->with(['product' => $product, 'listCate' => $listCate]);
+    }
+
+    public function edit(ProductRequest $request, $product)
+    {
+        $product = $this->productService->view($product);
+        $this->productService->edit($request, $product);
         return redirect()->route('admin.products');
     }
 
