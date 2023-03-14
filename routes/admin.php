@@ -1,11 +1,7 @@
 <?php
 
-use App\Http\Controllers\Admin\Auth\LoginController;
-use App\Http\Controllers\Admin\Auth\LogoutController;
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\HomeController;
-use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\NewsController;
+
+use App\Http\Controllers\Admin\NewsController;
 use Illuminate\Support\Facades\Route;
 
 /*
