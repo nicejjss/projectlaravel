@@ -38,13 +38,12 @@ class ProductController extends Controller
         return view('frontend.products.product_detail')->with(['product' => $product]);
     }
 
-    public function findWithSearch($data)
+    public function findWithSearch(Request $request)
     {
-        $products = $this->productService->findWithSearch($data);
-        return view('frontend.search.search')->with(['search' => $data, 'products' => $products]);
+        $products = $this->productService->findWithSearch($request->input('search'));
+        return view('frontend.search.search')->with(['search' => $request->input('search'), 'products' => $products]);
     }
 
-    //TODO: hot product
     public function hotProducts()
     {
         $products = $this->productService->hotProducts();

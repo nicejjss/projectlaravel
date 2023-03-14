@@ -39,23 +39,20 @@ class CustomerService
         if (Auth::guard('customer')->attempt(['name' => $name, 'password' => $password])) {
             return redirect()->route('home');
         }
-        return view('frontend.auth.login')->with(['loginfail' => "Sai tai KHoan"]);
+        return view('frontend.auth.login',['errMsg' => "Wrong PassWord"]);
     }
 
     public function register($request)
     {
         $data = $request->all();
-        $check = $this->checkExist($data);
+        $alreadyExists = $this->checkExist($data);
 
-        if (!$check) {
-            $user = $this->create($data);
-        } else {
-            return view('frontend.auth.register')->with('fail', 'Da Co Tai Khoan');
-
+        if ($alreadyExists) {
+            return view('frontend.auth.register')->with('errMsg', 'Da Co Tai Khoan');
         }
 
+        $user = $this->create($data);
         Auth::guard('customer')->loginUsingId($user->id);
-
         return redirect()->intended();
 
     }

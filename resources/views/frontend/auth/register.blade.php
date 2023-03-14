@@ -6,8 +6,8 @@
     <div class="row" style="margin-top:50px;">
         <div class="col-md-6">
             <div class="wrapper-form">
-               @isset($fail)
-                   <p style="color: red">{{$fail}}</p>
+               @isset($errMsg)
+                   <p style="color: red">{{$errMsg}}</p>
                 @endisset
                 <form method='post' action="">
                     @csrf
@@ -15,6 +15,9 @@
                     <div class="form-group">
                         <label>HoTen<b id="req">*</b></label>
                         <input type="text" class="input-control" name="name" required="">
+                        @error('name')
+                        {{$message}}
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label>Email:<b id="req">*</b></label>

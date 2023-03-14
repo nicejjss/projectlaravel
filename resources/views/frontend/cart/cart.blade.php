@@ -4,7 +4,7 @@
     @if(empty($cartProducts))
         <p style="margin-top: 20px; font-size: 20px">Khong Co San Pham Nao</p>
     @else
-        <form action="/cart/update" method="post">
+        <form action="{{route('cart.update')}}" method="post">
             @csrf
             <div class="table-responsive">
                 <table class="table table-cart">
@@ -19,14 +19,15 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($cartProducts as $key=> $cartProduct)
+
+                    @foreach($cartProducts as $key => $cartProduct)
                         <tr>
                             <td><img src="{{asset('upload/product/'.$cartProduct['img'])}}" class="img-responsive" /></td>
-                            <td><a href="product/{{$cartProduct['id']}}">{{$cartProduct['name']}}</a></td>
+                            <td><a href="product/{{$key}}">{{$cartProduct['name']}}</a></td>
                             <td> {{number_format($cartProduct['price'],0,'','.')}}₫ </td>
-                            <td><input type="number" id="qty" min="1" class="input-control" value="{{$cartProduct['quantity']}}" name="{{$key}}" required="Không thể để trống"></td>
+                            <td><input type="number" id="qty" min="1" class="input-control" value="{{$cartProduct['quantity']}}" name="product_{{$key}}" required="Không thể để trống"></td>
                             <td><p><b>{{number_format($cartProduct['price'] * $cartProduct['quantity'],0,'','.')}}₫</b></p></td>
-                            <td><a href="{{route('cart.delete',['id'=>$cartProduct['id']])}}" data-id="2479395"><i class="fa fa-trash"></i></a></td>
+                            <td><a href="{{route('cart.delete',['id'=>$key])}}" data-id="2479395"><i class="fa fa-trash"></i></a></td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -41,7 +42,7 @@
         </form>
         <div class="total-cart"> Tổng thanh toán:
             {{number_format($total,0,'','.')}}₫ <br>
-            <a href="/checkout" class="button black">Thanh toán</a>
+            <a href="{{route('checkout')}}" class="button black">Thanh toán</a>
         </div>
     @endif
 

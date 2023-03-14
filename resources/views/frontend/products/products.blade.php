@@ -36,7 +36,7 @@
                     <ul class="pagination pull-right" style="margin-top: 0px !important; padding-right: 15px;">
                         <li><a href="#">Trang</a></li>
                         @for($i=1;$i<=$products->lastPage();$i++)
-                            <li><a href="/category/{{$category->id}}?page={{$i}}">{{$i}}</a></li>
+                            <li><a href="{{route('category',['id'=>$category->id,'page'=>$i])}}">{{$i}}</a></li>
                         @endfor
                     </ul>
                     <!-- end box products -->

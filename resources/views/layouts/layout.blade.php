@@ -74,16 +74,17 @@
                             src="./../public/frontend/100/047/633/themes/517833/assets/logo221b.png?1481775169361"
                             alt="DKT Store" title="DKT Store" class="img-responsive"> </a></div>
                 <div class="col-xs-12 col-sm-12 col-md-6 header-search">
-                    <script type="text/javascript">
-                        function search() {
-                            key = document.getElementById("key").value;
-                            {{--url = {{URL('search')}};--}}
-                            location.href = 'search/'+key;
-                            return false;
-                        }
-                    </script>
-                    <form method="get" action="">
-                        <input type="text" value="" placeholder="Nhập từ khóa tìm kiếm..." id="key"
+{{--                    <script type="text/javascript">--}}
+{{--                        function search() {--}}
+{{--                            key = document.getElementById("key").value;--}}
+
+{{--                            location.href = 'search/'+key;--}}
+
+{{--                            return false;--}}
+{{--                        }--}}
+{{--                    </script>--}}
+                    <form method="get" action="{{route('product.search')}}">
+                        <input name="search" type="text" value="" placeholder="Nhập từ khóa tìm kiếm..." id="key"
                                class="input-control">
                         <button onclick="return search();" type="submit"><i class="fa fa-search" ></i></button>
                     </form>

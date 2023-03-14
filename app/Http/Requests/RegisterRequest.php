@@ -22,17 +22,19 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'phone' => 'required',
+            'name' => ['required','min:8','max:20'],
+            'phone' => ['required','numeric','min:10'],
             'email' => 'required',
-            'password' => 'required',
+            'password' => ['required'],
             'address' => 'required',
         ];
     }
     public function messages()
     {
         return [
-
+            'max'=>":attribute isn't longer than :max characters",
+            'min'=>":attribute isn't shorter than :min characters",
+            'required'=>':attribute must require',
         ];
     }
 

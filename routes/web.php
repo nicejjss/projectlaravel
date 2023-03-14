@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,7 +32,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::controller(ProductController::class)->group(function () {
     Route::get('/category/{id?}', 'showWithCate')->name('category');
     Route::get('/product/{id?}', 'find')->name('product');
-    Route::get('/search/{data}', 'findWithSearch')->name('search');
+    Route::get('/search', 'findWithSearch')->name('product.search');
 
 });
 Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
@@ -39,14 +40,14 @@ Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 Route::middleware('auth.customer')->controller(CartController::class)->group(function () {
     Route::post('/cart/add/{id?}', 'add')->name('cart.add');
     Route::get('/cart', 'index')->name('cart');
-    Route::post('cart/update', 'update');
+    Route::post('cart/update', 'update')->name('cart.update');
     Route::get('cart/destroy', 'destroy')->name('cart.destroy');
     Route::get('cart/delete/{id?}', 'delete')->name('cart.delete');
 });
 
 Route::middleware('auth.customer')->controller(CheckoutController::class)->group(function () {
-    Route::get('/checkout', 'index');
-    Route::post('/checkout/pay', 'pay')->name('pay');
+    Route::get('/checkout', 'index')->name('checkout');
+    Route::post('/checkout/pay', 'pay')->name('checkout.pay');
 });
 
 Route::controller(LoginController::class)->group(function () {
@@ -58,4 +59,4 @@ Route::controller(RegisterController::class)->group(function () {
     Route::post('/register', 'register');
 });
 
-Route::get('/news', [\App\Http\Controllers\NewsController::class, 'index'])->name('news');
+Route::get('/news', [NewsController::class, 'index'])->name('news');

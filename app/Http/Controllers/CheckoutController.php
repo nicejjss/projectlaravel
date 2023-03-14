@@ -21,7 +21,7 @@ class CheckoutController extends Controller
     public function index()
     {
         $products = $this->cartService->index();
-        $total = $this->cartService->totlaPrice($products);
+        $total = $this->cartService->totalPrice($products);
         return view('frontend.checkout.checkout')->with(['products' => $products, 'total' => $total]);
     }
 

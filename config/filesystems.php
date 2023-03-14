@@ -40,7 +40,7 @@ return [
             'driver' => 'local',
             'root' => storage_path('app/asset'),
             'url' => env('APP_URL').'/storage',
-            'visibility' => 'asset',
+            'visibility' => 'public',
             'throw' => false,
         ],
 

@@ -17,18 +17,10 @@ class CartService
         return session()->get('cart');
     }
 
-    public function checkExist($cartProduct)
-    {
-        if (empty($cartProduct)) {
-            return false;
-        }
-        return true;
-    }
-
-    public function totlaPrice($cartProduct)
+    public function totalPrice($cartProduct)
     {
         $total = 0;
-        if ($this->checkExist($cartProduct)) {
+        if (!empty($cartProduct)) {
             foreach ($cartProduct as $ket => $product) {
                 $eachprice = $product['price'] * $product['quantity'];
                 $total += $eachprice;
@@ -39,34 +31,52 @@ class CartService
 
     public function add($id, $quantity)
     {
-        $product = Product::find($id);
-        $cart_product = [
-            'id' => $id,
-            'img' => $product->img,
-            'name' => $product->name,
-            'price' => $product->price,
-            'quantity' => $quantity
-        ];
-        if (session()->has('cart')) {
-            $has = 0;
-            foreach (session()->get('cart') as $key => $value) {
-                if ($value["id"] == $id) {
-                    $number = session()->get('cart')[$key]['quantity'] + $cart_product['quantity'];
-                    session()->put('cart.' . $key . '.quantity', $number);
-                    $has = 1;
-                }
-            }
-            if ($has == 0) {
-                session(['cart' => array_merge(session()->get('cart'), ['product_' . $id => $cart_product])]);
+        $cart = session()->get('cart');
+
+        if (isset($cart)) {
+            if (isset($cart[$id])) {
+                $cart[$id]['quantity'] += $quantity;
+                session()->put('cart', $cart);
+            } else {
+                $this->existAdd($id, $quantity);
             }
         } else {
-            $this->create($id, $cart_product);
+            $this->create($id, $quantity);
         }
     }
 
-    public function create($id, $cart_product)
+    public function existAdd($id, $quantity)
     {
-        session()->put('cart', ['product_' . $id => $cart_product]);
+        $product = Product::find($id);
+        $cart = session()->get('cart');
+        $cart[$id] = [
+            'name' => $product->name,
+            'price' => $product->price,
+            'img' => $product->img,
+            'quantity' => $quantity
+        ];
+        session()->put('cart', $cart);
+    }
+
+    public function create($id, $quantity)
+    {
+        $product = Product::find($id);
+        $cart = [
+            $id => [
+                'name' => $product->name,
+                'price' => $product->price,
+                'img' => $product->img,
+                'quantity' => $quantity
+            ],
+        ];
+        session()->put('cart', $cart);
+    }
+
+    public function update(array $data)
+    {
+        foreach (session()->get('cart') as $key => $value) {
+            session()->put('cart.' . $key . '.quantity', $data['product_' . $key]);
+        }
     }
 
     public function destroy()
@@ -74,16 +84,11 @@ class CartService
         session()->forget('cart');
     }
 
-    public function update(array $data)
-    {
-        foreach (session()->get('cart') as $key => $value) {
-            session()->put('cart.' . $key . '.quantity', $data[$key]);
-        }
-    }
-
     public function remove($id)
     {
-        session()->forget('cart.product_' . $id);
+        $cart = session()->get('cart');
+        unset($cart[$id]);
+        session()->put('cart', $cart);
     }
 
 }

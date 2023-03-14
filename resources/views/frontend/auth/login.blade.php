@@ -6,10 +6,11 @@
     <div class="row" style="margin-top:50px;">
         <div class="col-md-6">
             <div class="wrapper-form">
-                @isset($loginfail)
-                    <p style="color: red">{{$loginfail}}</p>
-                @endisset
+                 @if(isset($errMsg))
+                     <p style="color: red">{{$errMsg}}</p>
+                @endif
                 <form method='post' action="">
+
                     @csrf
                     <p class="title"><span>Đăng nhập tài khoản</span></p>
                     <div class="form-group">

@@ -25,7 +25,7 @@ class CartController extends Controller
     public function index()
     {
         $cartProducts = $this->cartService->index();
-        $total = $this->cartService->totlaPrice($cartProducts);
+        $total = $this->cartService->totalPrice($cartProducts);
         return view('frontend.cart.cart')->with(['cartProducts' => $cartProducts, 'total' => $total]);
     }
 
@@ -33,25 +33,25 @@ class CartController extends Controller
     {
         $quantity = $request->input('quantity');
         $this->cartService->add($id, $quantity);
-        return redirect('/cart');
+        return redirect()->route('cart');
     }
 
     public function destroy()
     {
         $this->cartService->destroy();
-        return redirect('/cart');
+        return redirect()->route('cart');
     }
 
     public function delete($id)
     {
         $this->cartService->remove($id);
-        return redirect('/cart');
+        return redirect()->route('cart');
     }
 
     public function update(Request $request)
     {
         $data = $request->all();
         $this->cartService->update($data);
-        return redirect('/cart');
+        return redirect()->route('cart');
     }
 }
