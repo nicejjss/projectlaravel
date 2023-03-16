@@ -13,7 +13,6 @@ class LoginRequest extends FormRequest
     {
         return true;
     }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -22,8 +21,16 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required',
-            'password'=>'required'
+            'name'=>['required','max:20','min:1'],
+            'password'=>['required'],
         ];
     }
+    public function messages()
+    {
+        return [
+            '*.required'=>'Các trường :attribute phải có giá trị',
+            'name.max'=>'Gia tri khong qua :max',
+        ];
+    }
+
 }

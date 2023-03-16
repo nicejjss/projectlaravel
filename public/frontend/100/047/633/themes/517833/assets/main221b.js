@@ -3,18 +3,21 @@
 	$(document).ready(function(){
 
 		$('#header .mid-header .mini-cart .icon').click(function(e){
-
 			if($(window).width() < 767){
 				window.location.href='/cart'
 			}
 		})
 
+
 		$('.xemthem').click(function(e){
+
 			$(this).parent().parent().find('.fix-show').addClass('show');
 			$(this).hide();
 			$('.thugon').show();
 		})
+
 		$('.thugon').click(function(e){
+
 			$(this).parent().parent().find('.fix-show').removeClass('show');
 			$(this).hide();
 			$('.xemthem').show();
@@ -137,11 +140,13 @@
 				var $selected_tab = $(this).attr("href");
 				$($selected_tab).show();
 			}
+
 			return false;
 		});
 		$(function(){
 			var $this = $('.mobile-main-menu');
 			$('.toggle-main-menu').click(function(){
+
 				if ($this.is(':hidden')){
 					$this.stop(true,true).slideDown(300);
 				} else {
@@ -184,5 +189,5 @@
 		}
 
 	}
-
 })(jQuery);
+

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
+
     protected $table='categories';
     public $timestamps= false;
 
@@ -18,4 +19,9 @@ class Category extends Model
         'name',
         'home',
     ];
+
+    public static function cateHome()
+    {
+        return Category::where('home', FLAG_ON)->get();
+    }
 }
