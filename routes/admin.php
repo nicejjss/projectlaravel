@@ -1,8 +1,11 @@
 <?php
 
 
-use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -54,19 +57,17 @@ Route::prefix('admin')->group(function () {
             Route::get('/news/delete/{id?}', 'delete')->name('admin.news.delete');
         });
 
+        Route::controller(OrderController::class)->group(function () {
+            Route::get('/orders', 'index')->name('admin.orders');
 
+            Route::get('/order/detail/{id?}', 'detail')->name('admin.order.detail');
 
+            Route::put('/orders/update', 'update')->name('admin.orders.update');
+
+            Route::get('/order/delete/{id?}', 'delete')->name('admin.order.delete');
+        });
 
     });
 
-    Route::controller(OrderController::class)->group(function () {
-        Route::get('/orders', 'index')->name('admin.orders');
-
-        Route::get('/order/detail/{id?}','detail')->name('admin.order.detail');
-
-        Route::put('/orders/update','update')->name('admin.orders.update');
-
-        Route::get('/order/delete/{id?}', 'delete')->name('admin.order.delete');
-    });
 
 });
