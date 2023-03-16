@@ -41,17 +41,20 @@ Route::prefix('admin')->group(function () {
             Route::get('/category/delete/{id?}', 'delete')->name('admin.category.delete');
         });
 
+        Route::controller(NewsController::class)->group(function () {
+            Route::get('/news', 'index')->name('admin.news');
+
+            Route::get('/news/add', 'addView')->name('admin.news.add');
+            Route::post('/news/add', 'add');
+
+            Route::get('/news/edit/{id?}', 'editView')->name('admin.news.edit');
+            Route::put('/news/edit/{id?}', 'edit');
+
+            Route::get('/news/delete/{id?}', 'delete')->name('admin.news.delete');
+        });
+
+
     });
 
-    Route::controller(NewsController::class)->group(function () {
-        Route::get('/news', 'index')->name('admin.news');
 
-        Route::get('/news/add', 'addView')->name('admin.news.add');
-        Route::post('/news/add', 'add');
-
-        Route::get('/news/edit/{id?}', 'editView')->name('admin.news.edit');
-        Route::put('/news/edit/{id?}', 'edit');
-
-        Route::get('/news/delete/{id?}', 'delete')->name('admin.news.delete');
-    });
 });
