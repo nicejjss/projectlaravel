@@ -24,24 +24,25 @@ Route::prefix('admin')->group(function () {
 
         Route::get("/", [HomeController::class, 'index'])->name('admin.home');
 
+        Route::controller(CategoryController::class)->group(function () {
+
+            Route::get('/categories', 'index')->name('admin.categories');
+
+            Route::get('/category/add', 'addView')->name('admin.category.add');
+            Route::post('/category/add', 'add');
+
+            Route::get('/category/edit/{id?}', 'editView')->name('admin.category.edit');
+            Route::put('category/edit/{id?}','edit');
+
+            Route::get('/category/delete/{id?}', 'delete')->name('admin.category.delete');
+        });
+
+
     });
 
     Route::controller(LoginController::class)->group(function () {
         Route::get('/login', 'login')->name('admin.login');
         Route::post('login', 'check');
-    });
-
-    Route::controller(CategoryController::class)->group(function () {
-
-        Route::get('/categories', 'index')->name('admin.categories');
-
-        Route::get('/category/add', 'addView')->name('admin.category.add');
-        Route::post('/category/add', 'add');
-
-        Route::get('/category/edit/{id?}', 'editView')->name('admin.category.edit');
-        Route::put('category/edit/{id?}','edit');
-
-        Route::get('/category/delete/{id?}', 'delete')->name('admin.category.delete');
     });
 
     Route::get('/logout', [LogoutController::class, 'logout'])->name('admin.logout');
