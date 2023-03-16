@@ -11,8 +11,9 @@ use Illuminate\Support\Facades\Validator;
 
 class CustomerService
 {
-
-
+    public function index(){
+        return Customer::paginate(PER_PAGE);
+    }
     public function checkExist($data)
     {
         if (Customer::where('name', '=', $data['name'])->first() || Customer::where('email', '=', $data['email'])->first()) {
