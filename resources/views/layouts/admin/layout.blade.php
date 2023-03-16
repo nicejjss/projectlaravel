@@ -24,7 +24,7 @@
                 <li class="active"><a href="">Danh mục sản phẩm</a></li>
                 <li class="active"><a href="">Danh sách sản phẩm</a></li>
                 <li class="active"><a href="{{route('admin.news')}}">Tin tức</a></li>
-                <li class="active"><a href="admin.php?controller=order">Đơn hàng</a></li>
+                <li class="active"><a href="{{route('admin.orders')}}">Đơn hàng</a></li>
                 <li class="active"><a href="admin.php?controller=customer">Customer</a></li>
                 <li class="active"><a href="">Logout</a></li>
             </ul>

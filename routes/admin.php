@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\OrderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -54,7 +55,18 @@ Route::prefix('admin')->group(function () {
         });
 
 
+
+
     });
 
+    Route::controller(OrderController::class)->group(function () {
+        Route::get('/orders', 'index')->name('admin.orders');
+
+        Route::get('/order/detail/{id?}','detail')->name('admin.order.detail');
+
+        Route::put('/orders/update','update')->name('admin.orders.update');
+
+        Route::get('/order/delete/{id?}', 'delete')->name('admin.order.delete');
+    });
 
 });
