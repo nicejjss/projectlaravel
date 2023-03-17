@@ -19,7 +19,7 @@
                         <div class="col-md-10">
                             <input type="submit" value="Thêm Danh Mục" class="btn btn-primary">
                             <input type="reset" value="Reset" class="btn btn-danger">
-                            <a href="admin.php?controller=category_product" class="btn btn-warningr"> Huy </a>
+                            <a href="{{route('admin.categories')}}" class="btn btn-warningr"> Huy </a>
                         </div>
                     </div>
                 </div>
