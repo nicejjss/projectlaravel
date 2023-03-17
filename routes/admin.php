@@ -55,12 +55,17 @@ Route::prefix('admin')->group(function () {
             Route::get('/products/delete/{id?}', 'delete')->name('admin.product.delete');
         });
 
+
+
+        Route::controller(CustomerController::class)->group(function () {
+
+            Route::get('/customers', 'index')->name('admin.customers');
+            Route::get('/customer/delete/{id?}','delete')->name('admin.customer.delete');
+
+        });
+
     });
 
-    Route::controller(CustomerController::class)->group(function () {
-        Route::get('/customers', 'index')->name('admin.customers');
-
-    });
 
     Route::get('/logout', [LogoutController::class, 'logout'])->name('admin.logout');
 

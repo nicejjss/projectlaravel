@@ -58,4 +58,9 @@ class CustomerService
 
     }
 
+    public function delete($id){
+        $customer = Customer::find($id);
+        $customer->delete();
+    }
+
 }

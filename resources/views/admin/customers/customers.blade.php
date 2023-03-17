@@ -20,6 +20,9 @@
                         <td>{{$customer->phone}}</td>
                         <td>{{$customer->address}}</td>
                         <td>{{$customer->email}}</td>
+                        <td style="text-align: center;">
+                            <a onclick="return window.confirm('Are you sure?');" href="{{route('admin.customer.delete',['id'=>$customer->id])}}">Delete</a>
+                        </td>
                     </tr>
                     @endforeach
                 </table>

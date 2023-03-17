@@ -18,4 +18,10 @@ class CustomerController extends Controller
         $customers = $this->customerService->index();
         return view('admin.customers.customers')->with(['customers'=>$customers]);
     }
+
+    public function delete($id){
+        $this->customerService->delete($id);
+        return redirect()->route('admin.customers');
+    }
+
 }
