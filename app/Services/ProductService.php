@@ -5,20 +5,11 @@ namespace App\Services;
 
 
 
-use App\Models\Comment;
 use App\Models\Product;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
-
-use App\Models\Order;
-use App\Models\Product;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\DB;
-use function Symfony\Component\Console\Style\table;
 
 class ProductService
 {
@@ -60,7 +51,7 @@ class ProductService
         return Product::where('category_id', $id)->paginate(PER_PAGE);
     }
 
-    public function find($id)
+    public function view($id)
     {
         return Product::find($id);
     }

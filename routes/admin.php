@@ -44,7 +44,6 @@ Route::prefix('admin')->group(function () {
             Route::get('/category/delete/{id?}', 'delete')->name('admin.category.delete');
         });
 
-
         Route::controller(ProductController::class)->group(function () {
             Route::get('/products', 'index')->name('admin.products');
 
@@ -59,6 +58,7 @@ Route::prefix('admin')->group(function () {
         });
 
     });
+
 
     Route::get('/logout', [LogoutController::class, 'logout'])->name('admin.logout');
 
