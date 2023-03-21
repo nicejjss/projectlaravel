@@ -24,7 +24,7 @@ class CategoryService
     {
         Category::create([
             'name' => $request['name'],
-            'home' => 0,
+            'home' => FLAG_OFF,
         ]);
     }
 
@@ -37,15 +37,15 @@ class CategoryService
     {
         $category = Category::find($id);
         $category->update([
-            'name' => $request['name'],
-            'home' => $request['home'],
+            'name' => data_get($request,'name',''),
+            'home' => data_get($request,'home',FLAG_OFF),
         ]);
     }
 
     public function delete($id)
     {
         $category = Category::find($id);
-        $category->visible = 0;
+        $category->visible = FLAG_OFF;
         $category->save();
     }
 
