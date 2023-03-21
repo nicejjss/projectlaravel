@@ -7,13 +7,17 @@ namespace App\Services;
 use App\Models\News;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\File;
+=======
+>>>>>>> origin/master
 
 class NewsService
 {
 
     public function index()
     {
+<<<<<<< HEAD
         return News::paginate(PER_PAGE);
     }
 
@@ -57,6 +61,34 @@ class NewsService
             File::delete(public_path('upload/news/' . $news->img));
         }
         $news->delete();
+=======
+        return News::paginate(4);
+    }
+
+    public function create(array $data)
+    {
+
+
+    }
+
+    public function find($id)
+    {
+
+    }
+
+    public function update(array $data, int $id)
+    {
+
+    }
+
+    public function remove($id)
+    {
+
+    }
+
+    public function getPostsByType(int $type)
+    {
+>>>>>>> origin/master
 
     }
 }

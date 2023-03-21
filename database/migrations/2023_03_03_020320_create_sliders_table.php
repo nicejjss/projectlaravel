@@ -9,23 +9,20 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('sliders', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-//            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-//            $table->rememberToken();
-//            $table->timestamps();
+            $table->string('img');
         });
     }
 
     /**
      * Reverse the migrations.
      */
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('sliders');
     }
 };
