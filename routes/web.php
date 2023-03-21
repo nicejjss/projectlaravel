@@ -60,3 +60,4 @@ Route::controller(RegisterController::class)->group(function () {
 });
 
 Route::get('/news', [NewsController::class, 'index'])->name('news');
+
