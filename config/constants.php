@@ -1,9 +1,6 @@
 <?php
 
-<<<<<<< HEAD
-if(!defined('PER_PAGE')){
-    define('PER_PAGE',4);
-=======
+
 if (!defined('PER_PAGE')) {
     define('PER_PAGE', 4);
 }
@@ -12,5 +9,4 @@ if(!defined('FLAG_ON')){
 }
 if(!defined('FLAG_OFF')){
     define('FLAG_OFF',0);
->>>>>>> origin/master
 }
