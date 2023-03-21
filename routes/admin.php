@@ -32,7 +32,7 @@ Route::prefix('admin')->group(function () {
             Route::post('/category/add', 'add');
 
             Route::get('/category/edit/{id?}', 'editView')->name('admin.category.edit');
-            Route::put('category/edit/{id?}','edit');
+            Route::put('category/edit/{id?}', 'edit');
 
             Route::get('/category/delete/{id?}', 'delete')->name('admin.category.delete');
         });

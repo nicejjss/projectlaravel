@@ -5,10 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\EditCategoryRequest;
-use App\Models\Category;
-use App\Models\Product;
 use App\Services\CategoryService;
-use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -33,7 +30,7 @@ class CategoryController extends Controller
 
     public function add(CategoryRequest $request)
     {
-        $this->categoryService->add($request);
+        $this->categoryService->add($request->validated());
         return redirect()->route('admin.categories');
     }
 
@@ -43,12 +40,11 @@ class CategoryController extends Controller
         return view('admin.categories.edit')->with(['category' => $category]);
     }
 
-    public function edit(EditCategoryRequest $request, $category)
+    public function edit(EditCategoryRequest $request, $id)
     {
-        $category = $this->categoryService->view($category);
-
-        $this->categoryService->edit($request, $category);
-
+        $data ['name'] = $request->validated()['name'];
+        $data ['home'] = $request->input('home');
+        $this->categoryService->edit($data, $id);
         return redirect()->route('admin.categories');
     }
 

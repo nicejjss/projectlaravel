@@ -14,14 +14,15 @@
 					</th>
 				</tr>
                 @foreach($categories as $category)
+{{--                    {{dd($category)}}--}}
 				<tr>
-					<td>{{$category['name']}}</td>
+					<td>{{$category->name}}</td>
 					<td style="text-align: center;">
                         @if($category['home'])
 						<span class="glyphicon glyphicon-check"></span>
                         @endif
 					</td>
-                    <td>{{$category['total_number']}}</td>
+                    <td>{{$category['totalNumber']}}</td>
 					<td style="text-align: center;">
 						<a href="{{route('admin.category.edit',['id'=>$category['id']])}}">Edit</a>&nbsp;&nbsp;
 						<a onclick="return window.confirm('Are you sure?');" href="{{route('admin.category.delete',['id'=>$category['id']])}}">Delete</a>
