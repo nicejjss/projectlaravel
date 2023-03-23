@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
+use App\Models\Category;
 use App\Services\CategoryService;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
@@ -46,7 +47,7 @@ class ProductController extends Controller
 
     public function edit(ProductRequest $request, $product)
     {
-        $this->productService->edit($request, $product);
+        $this->productService->edit($request->validated(), $product);
         return redirect()->route('admin.products');
     }
 

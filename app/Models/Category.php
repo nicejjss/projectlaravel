@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Scopes\VisibleScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class Category extends Model
 {
@@ -26,4 +28,5 @@ class Category extends Model
     {
         return Category::where('home', FLAG_ON)->get();
     }
+
 }

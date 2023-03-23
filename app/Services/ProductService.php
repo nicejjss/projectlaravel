@@ -15,23 +15,21 @@ class ProductService
 
     public function index()
     {
-        return Product::where('products.visible', FLAG_ON)->select('products.id', 'img', 'products.name as product_name', 'categories.name as category_name', 'price')
+        return Product::visible()->select('products.id', 'img', 'products.name as product_name', 'categories.name as category_name', 'price')
             ->join('categories', 'categories.id', '=', 'products.category_id')->paginate(PER_PAGE);
     }
 
-    public function add($request)
+    public function add($data)
     {
-        $imgName = time() . $request['img']->getClientOriginalName();
-        $imgFile = $request['img'];
-        $imgFile->move(public_path('upload/product/'), $imgName);
+        $imgPath = $this->uploadImage($data);
         Product::create([
-            'name' => $request['name'],
-            'category_id' => $request['category_id'],
-            'description' => $request['description'],
-            'content' => $request['content'],
-            'img' => $imgName,
-            'price' => $request['price'],
-            'visible'=>FLAG_ON,
+            'name' => $data['name'],
+            'category_id' => $data['category_id'],
+            'description' => $data['description'],
+            'content' => $data['content'],
+            'img' => $imgPath,
+            'price' => $data['price'],
+            'visible' => FLAG_ON,
         ]);
     }
 
@@ -56,37 +54,42 @@ class ProductService
     }
 
 
-    public function edit($request, $product)
+    public function edit($data, $product)
     {
         $product = Product::find($product);
 
-        $data = $request->all();
 
-        $imgName = '';
+        $imgPath = '';
         if (empty($data['img'])) {
-            $imgName = $product->img;
+            $imgPath = $product->img;
         } else {
             if (File::exists(public_path('upload/product/' . $product->img))) {
                 File::delete(public_path('upload/product/' . $product->img));
             }
-            $imgName = time() . $data['img']->getClientOriginalName();
-            $request->img->move(public_path('upload/product/'), $imgName);
+            $imgPath = $this->uploadImage($data);
         }
-
         $product->update([
             'name' => $data['name'],
             'category_id' => $data['category_id'],
             'description' => $data['description'],
             'content' => $data['content'],
-            'img' => $imgName,
+            'img' => $imgPath,
             'price' => $data['price'],
         ]);
+    }
+
+    public function uploadImage($data)
+    {
+        $imgFile = $data['img'];
+        $imgPath = time() . $imgFile->getClientOriginalName();
+        $imgFile->move(public_path('upload/product/'), $imgPath);
+        return $imgPath;
     }
 
     public function delete($id)
     {
         $product = Product::find($id);
-        $product->visible =FLAG_OFF;
+        $product->visible = FLAG_OFF;
         $product->save();
     }
 

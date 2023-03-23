@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class Product extends Model
 {
@@ -31,4 +32,9 @@ class Product extends Model
     {
         return $this->belongsToMany(Order::class, 'order_details', 'product_id', 'order_id')->withPivot('number');
     }
+
+    public function scopeVisible(Builder $query){
+        return $query->where('products.visible',FLAG_ON);
+    }
+
 }
