@@ -33,7 +33,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-3">Ảnh SP </div>
-                        <div class="col-md-9"><input value="" type="file" accept="image/png, image/gif, image/jpeg"  name="img" required class=""></div>
+                        <div class="col-md-9"><input value="" type="file" accept="image/png, image/gif, image/jpeg"  name="img" class=""></div>
                     </div>
                     <div class="row">
                         <div class="col-md-3">Giá SP </div>

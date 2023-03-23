@@ -8,12 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
-    protected $table= 'categories';
-    public $timestamps=false;
-    public function products(){
-        return $this->hasMany(Product::class,'category_id','id');
-        }
 
+    protected $table = 'categories';
+    public $timestamps = false;
+
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'category_id', 'id');
+    }
+
+    protected $fillable = [
+        'name',
+        'home',
+    ];
 
     public static function cateHome()
     {

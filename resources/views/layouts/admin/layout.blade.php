@@ -32,7 +32,7 @@
     </div>
 </nav>
 <div class="container" style="margin-top: 80px;">
-    @yield('content')
+  @yield('content')
 </div>
 </body>
 </html>
