@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Scopes\VisibleScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 
 class Category extends Model
 {
@@ -14,15 +13,16 @@ class Category extends Model
     protected $table = 'categories';
     public $timestamps = false;
 
+    protected $fillable = [
+        'name',
+        'home',
+    ];
+
     public function products()
     {
         return $this->hasMany(Product::class, 'category_id', 'id');
     }
 
-    protected $fillable = [
-        'name',
-        'home',
-    ];
 
     public static function cateHome()
     {
