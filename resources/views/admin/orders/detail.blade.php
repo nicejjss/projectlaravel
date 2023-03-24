@@ -20,7 +20,6 @@
                     </tr>
                     </thead>
                     <tbody>
-
                    @foreach($data['order'] as $order)
                     <tr>
                         <td width="15%"><img src="{{asset('upload/product/'.$order->img)}}" class="img-responsive" /></td>

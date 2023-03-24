@@ -4,17 +4,34 @@
 namespace App\Services;
 
 
-use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
-use function Symfony\Component\Console\Style\table;
+use Illuminate\Support\Facades\File;
 
 class ProductService
 {
+
+    public function index()
+    {
+        return Product::visible()->select('products.id', 'img', 'products.name as product_name', 'categories.name as category_name', 'price')
+            ->join('categories', 'categories.id', '=', 'products.category_id')->paginate(PER_PAGE);
+    }
+
+    public function add($data)
+    {
+        $imgPath = $this->uploadImage($data);
+        Product::create([
+            'name' => $data['name'],
+            'category_id' => $data['category_id'],
+            'description' => $data['description'],
+            'content' => $data['content'],
+            'img' => $imgPath,
+            'price' => $data['price'],
+            'visible' => FLAG_ON,
+        ]);
+    }
 
     public function findWithSearch($data)
     {
@@ -31,16 +48,49 @@ class ProductService
         return Product::where('category_id', $id)->paginate(PER_PAGE);
     }
 
-    public function find($id)
+    public function view($id)
     {
         return Product::find($id);
     }
 
-    //create product
-    public function create(array $data)
+
+    public function edit($data, $productId)
     {
+        $product = Product::find($productId);
 
 
+        $imgPath = '';
+        if (empty($data['img'])) {
+            $imgPath = $product->img;
+        } else {
+            if (File::exists(public_path('upload/product/' . $product->img))) {
+                File::delete(public_path('upload/product/' . $product->img));
+            }
+            $imgPath = $this->uploadImage($data);
+        }
+        $product->update([
+            'name' => $data['name'],
+            'category_id' => $data['category_id'],
+            'description' => $data['description'],
+            'content' => $data['content'],
+            'img' => $imgPath,
+            'price' => $data['price'],
+        ]);
+    }
+
+    public function uploadImage($data)
+    {
+        $imgFile = $data['img'];
+        $imgPath = time() . $imgFile->getClientOriginalName();
+        $imgFile->move(public_path('upload/product/'), $imgPath);
+        return $imgPath;
+    }
+
+    public function delete($id)
+    {
+        $product = Product::find($id);
+        $product->visible = FLAG_OFF;
+        $product->save();
     }
 
     public function hotProducts()
