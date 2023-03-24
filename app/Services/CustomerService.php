@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Validator;
 class CustomerService
 {
     public function index(){
-        return Customer::paginate(PER_PAGE);
+        return Customer::visible()->paginate(PER_PAGE);
     }
     public function checkExist($data)
     {
@@ -43,9 +43,8 @@ class CustomerService
         return view('frontend.auth.login',['errMsg' => "Wrong PassWord"]);
     }
 
-    public function register($request)
+    public function register($data)
     {
-        $data = $request->all();
         $alreadyExists = $this->checkExist($data);
 
         if ($alreadyExists) {
@@ -60,7 +59,8 @@ class CustomerService
 
     public function delete($id){
         $customer = Customer::find($id);
-        $customer->delete();
+        $customer->visible = FLAG_OFF;
+        $customer->save();
     }
 
 }

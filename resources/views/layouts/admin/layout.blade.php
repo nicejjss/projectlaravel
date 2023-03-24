@@ -10,7 +10,12 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
+<<<<<<< HEAD
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+=======
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+>>>>>>> origin/master
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -23,8 +28,8 @@
                 <li class="active"><a href="#">Home</a></li>
                 <li class="active"><a href="{{route('admin.categories')}}">Danh mục sản phẩm</a></li>
                 <li class="active"><a href="{{route('admin.products')}}">Danh sách sản phẩm</a></li>
-                <li class="active"><a href="admin.php?controller=news">Tin tức</a></li>
-                <li class="active"><a href="admin.php?controller=order">Đơn hàng</a></li>
+                <li class="active"><a href="{{route('admin.news')}}">Tin tức</a></li>
+                <li class="active"><a href="{{route('admin.orders')}}">Đơn hàng</a></li>
                 <li class="active"><a href="{{route('admin.customers')}}">Customer</a></li>
                 <li class="active"><a href="{{route('admin.logout')}}">Logout</a></li>
             </ul>

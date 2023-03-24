@@ -5,40 +5,69 @@ namespace App\Services;
 
 
 use App\Models\News;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class NewsService
 {
 
     public function index()
     {
-        return News::paginate(4);
+        return News::visible()->paginate(PER_PAGE);
     }
 
-    public function create(array $data)
+    public function add($data)
     {
-
-
+        $imgPath = $this->uploadImage($data);
+        News::create([
+            'title' => $data['title'],
+            'description' => $data['description'],
+            'content' => $data['content'],
+            'img' => $imgPath,
+            'visible' => FLAG_ON,
+        ]);
     }
 
-    public function find($id)
+    public function view($id)
     {
-
+        return News::find($id);
     }
 
-    public function update(array $data, int $id)
+    public function edit($data, $newsId)
     {
+        $news = News::find($newsId);
+        $imgPath = '';
 
+        if (empty($data['img'])) {
+            $imgPath = $news->img;
+        } else {
+            if (File::exists(public_path('upload/product/' . $news->img))) {
+                File::delete(public_path('upload/product/' . $news->img));
+            }
+
+            $imgPath = $this->uploadImage($data);
+        }
+
+        $news->update([
+            'title' => $data['title'],
+            'description' => $data['description'],
+            'content' => $data['content'],
+            'img' => $imgPath,
+        ]);
     }
 
-    public function remove($id)
+    public function uploadImage($data)
     {
-
+        $imgFile = $data['img'];
+        $imgPath = time() . $imgFile->getClientOriginalName();
+        $imgFile->move(public_path('upload/news/'), $imgPath);
+        return $imgPath;
     }
 
-    public function getPostsByType(int $type)
+    public function delete($id)
     {
-
+        $news = News::find($id);
+        $news->visible = FLAG_OFF;
+        $news->save();
     }
+
 }
