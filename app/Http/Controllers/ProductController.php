@@ -28,7 +28,7 @@ class ProductController extends Controller
     public function showWithCate($id)
     {
         $products = $this->productService->showWithCate($id);
-        $category = Category::find($id);
+        $category = $this->categoryService->view($id);
         return view('frontend.products.products')->with(['products' => $products, 'category' => $category]);
     }
 

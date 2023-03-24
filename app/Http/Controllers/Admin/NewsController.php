@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\NewsRequest;
 use App\Services\NewsService;
 
+
 class NewsController extends Controller
 {
-
     protected $newsService;
 
     public function __construct(NewsService $newsService)
@@ -19,6 +19,7 @@ class NewsController extends Controller
     public function index()
     {
         $listNews = $this->newsService->index();
+        
         return view('admin.news')->with(['listNews' => $listNews]);
     }
 

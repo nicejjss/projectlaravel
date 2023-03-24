@@ -42,9 +42,8 @@ class CustomerService
         return view('frontend.auth.login',['errMsg' => "Wrong PassWord"]);
     }
 
-    public function register($request)
+    public function register($data)
     {
-        $data = $request->all();
         $alreadyExists = $this->checkExist($data);
 
         if ($alreadyExists) {
