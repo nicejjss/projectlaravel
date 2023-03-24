@@ -23,13 +23,13 @@
                         </div>
                         <div class="row">
                             <div class="col-md-3">Ảnh Tin </div>
-                            <div class="col-md-9"><input type="file" accept="image/png, image/gif, image/jpeg"  name="img" required class=""></div>
+                            <div class="col-md-9"><input type="file" accept="image/png, image/gif, image/jpeg"  name="img" class=""></div>
                         </div>
                         <!-- row -->
                         <div class="row" style="margin-top:5px;">
                             <div class="col-md-2"></div>
                             <div class="col-md-10">
-                                <input type="submit" value="Thêm Tin" class="btn btn-primary">
+                                <input type="submit" value="Sua Tin" class="btn btn-primary">
                                 <input type="reset" value="Reset" class="btn btn-danger">
                                 <a href="{{route('admin.news')}}" class="btn btn-warningr"> Huy </a>
                             </div>

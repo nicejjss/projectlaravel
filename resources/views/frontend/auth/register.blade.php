@@ -22,18 +22,30 @@
                     <div class="form-group">
                         <label>Email:<b id="req">*</b></label>
                         <input type="email" class="input-control" name="email" required="">
+                        @error('email')
+                        {{$message}}
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label>Mật khẩu:<b id="req">*</b></label>
                         <input type="password" class="input-control" name="password" required="">
+                        @error('password')
+                        {{$message}}
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label>Dia Chi:<b id="req">*</b></label>
                         <input type="text" class="input-control" name="address" required="">
+                        @error('address')
+                        {{$message}}
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label>SDT: <b id="req">*</b></label>
                         <input type="text" class="input-control" name="phone" required="">
+                        @error('phone')
+                        {{$message}}
+                        @enderror
                     </div>
                     <input type="submit" class="button" value="Đăng Ky">
                 </form>

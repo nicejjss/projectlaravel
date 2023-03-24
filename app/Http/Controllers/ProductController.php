@@ -27,13 +27,13 @@ class ProductController extends Controller
     public function showWithCate($id)
     {
         $products = $this->productService->showWithCate($id);
-        $category = $this->categoryService->find($id);
+        $category = $this->categoryService->view($id);
         return view('frontend.products.products')->with(['products' => $products, 'category' => $category]);
     }
 
     public function find($id)
     {
-        $product = $this->productService->find($id);
+        $product = $this->productService->view($id);
         return view('frontend.products.product_detail')->with(['product' => $product]);
     }
 
