@@ -45,9 +45,9 @@ class ProductController extends Controller
         return view('admin.products.edit')->with(['product' => $product, 'listCate' => $listCate]);
     }
 
-    public function edit(ProductRequest $request, $product)
+    public function edit(ProductRequest $request, $productId)
     {
-        $this->productService->edit($request->validated(), $product);
+        $this->productService->edit($request->validated(), $productId);
         return redirect()->route('admin.products');
     }
 

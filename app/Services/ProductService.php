@@ -54,9 +54,9 @@ class ProductService
     }
 
 
-    public function edit($data, $product)
+    public function edit($data, $productId)
     {
-        $product = Product::find($product);
+        $product = Product::find($productId);
 
 
         $imgPath = '';
