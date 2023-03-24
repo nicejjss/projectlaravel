@@ -5,11 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\NewsRequest;
 use App\Services\NewsService;
-use Illuminate\Http\Request;
+
 
 class NewsController extends Controller
 {
-    //
     protected $newsService;
 
     public function __construct(NewsService $newsService)
@@ -20,7 +19,8 @@ class NewsController extends Controller
     public function index()
     {
         $listNews = $this->newsService->index();
-        return view('admin.news.news')->with(['listNews' => $listNews]);
+        
+        return view('admin.news')->with(['listNews' => $listNews]);
     }
 
     public function addView()
@@ -37,7 +37,7 @@ class NewsController extends Controller
     public function editView($id)
     {
         $news = $this->newsService->view($id);
-        return view('admin.news.edit')->with(['news'=>$news]);
+        return view('admin.news.edit')->with(['news' => $news]);
     }
 
     public function edit(NewsRequest $request, $newsId)

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -14,7 +15,10 @@ class News extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'title','content','description','img'
+        'title',
+        'content',
+        'description',
+        'img',
     ];
 
     public static function index()
@@ -22,7 +26,8 @@ class News extends Model
         return News::all();
     }
 
-    public function scopeVisible(Builder $query){
-           return $query->where('visible',FLAG_ON);
+    public function scopeVisible(Builder $query)
+    {
+        return $query->where('visible', FLAG_ON);
     }
 }

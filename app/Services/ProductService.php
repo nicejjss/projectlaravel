@@ -53,21 +53,23 @@ class ProductService
         return Product::find($id);
     }
 
-
     public function edit($data, $productId)
     {
         $product = Product::find($productId);
 
 
         $imgPath = '';
+
         if (empty($data['img'])) {
             $imgPath = $product->img;
         } else {
             if (File::exists(public_path('upload/product/' . $product->img))) {
                 File::delete(public_path('upload/product/' . $product->img));
             }
+
             $imgPath = $this->uploadImage($data);
         }
+
         $product->update([
             'name' => $data['name'],
             'category_id' => $data['category_id'],
@@ -99,7 +101,8 @@ class ProductService
         DB::reconnect();
 
         $products = Product::select('*', DB::raw('sum(order_details.number) as totalnumber'))
-            ->join('order_details', 'order_details.product_id', 'products.id')->groupBy('products.id')->orderByDesc('totalnumber')->get()->toArray();
+            ->join('order_details', 'order_details.product_id', 'products.id')
+            ->groupBy('products.id')->orderByDesc('totalnumber')->get()->toArray();
 
         config()->set('database.connections.mysql.strict', true);
         DB::reconnect();

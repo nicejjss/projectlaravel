@@ -36,14 +36,17 @@ class NewsService
     {
         $news = News::find($newsId);
         $imgPath = '';
+
         if (empty($data['img'])) {
             $imgPath = $news->img;
         } else {
             if (File::exists(public_path('upload/product/' . $news->img))) {
                 File::delete(public_path('upload/product/' . $news->img));
             }
+
             $imgPath = $this->uploadImage($data);
         }
+
         $news->update([
             'title' => $data['title'],
             'description' => $data['description'],

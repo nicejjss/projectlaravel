@@ -14,14 +14,17 @@ class CategoryService
     {
         $categories = Category::where('visible', FLAG_ON)->paginate(PER_PAGE);
 
-        foreach ($categories as $category) {
+        foreach ($categories as $category)
+        {
             $category->totalNumber = $category->products->count();
         }
+
         return $categories;
     }
 
-    public function getAll(){
-        return Category::where('visible',FLAG_ON)->get();
+    public function getAll()
+    {
+        return Category::where('visible', FLAG_ON)->get();
     }
 
     public function add($request)
@@ -41,8 +44,8 @@ class CategoryService
     {
         $category = Category::find($id);
         $category->update([
-            'name' => data_get($request,'name',''),
-            'home' => data_get($request,'home',FLAG_OFF),
+            'name' => data_get($request, 'name', ''),
+            'home' => data_get($request, 'home', FLAG_OFF),
         ]);
     }
 

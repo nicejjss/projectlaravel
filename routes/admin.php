@@ -1,10 +1,12 @@
 <?php
 
+
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\LogoutController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -64,14 +66,25 @@ Route::prefix('admin')->group(function () {
             Route::put('/news/edit/{id?}', 'edit');
 
             Route::get('/news/delete/{id?}', 'delete')->name('admin.news.delete');
+        });
 
+
+        Route::controller(OrderController::class)->group(function () {
+
+            Route::get('/orders', 'index')->name('admin.orders');
+
+            Route::get('/order/detail/{id?}', 'detail')->name('admin.order.detail');
+
+            Route::put('/orders/update/{page?}', 'update')->name('admin.orders.update');
+
+            Route::get('/order/delete/{id?}', 'delete')->name('admin.order.delete');
         });
     });
 
-    Route::controller(LoginController::class)->group(function () {
-        Route::get('/login', 'login')->name('admin.login');
-        Route::post('login', 'check');
-    });
+        Route::controller(LoginController::class)->group(function () {
+            Route::get('/login', 'login')->name('admin.login');
+            Route::post('login', 'check');
+        });
 
-    Route::get('/logout', [LogoutController::class, 'logout'])->name('admin.logout');
+        Route::get('/logout', [LogoutController::class, 'logout'])->name('admin.logout');
 });

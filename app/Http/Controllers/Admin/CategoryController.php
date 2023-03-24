@@ -9,7 +9,7 @@ use App\Services\CategoryService;
 
 class CategoryController extends Controller
 {
-    //
+
     protected $categoryService;
 
     public function __construct(CategoryService $categoryService)
