@@ -12,14 +12,15 @@ class Order extends Model
     protected $table = "orders";
     public $timestamps = false;
 
-    public function products()
-    {
-        return $this->belongsToMany(Product::class,'order_details','product_id','order_id')->withPivot('number');
-    }
-    protected $fillable=[
+    protected $fillable = [
         'customer_id',
         'status',
         'price',
         'buy_date'
     ];
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'order_details', 'product_id', 'order_id')->withPivot('number');
+    }
 }

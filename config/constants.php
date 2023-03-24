@@ -9,4 +9,5 @@ if(!defined('FLAG_ON')){
 }
 if(!defined('FLAG_OFF')){
     define('FLAG_OFF',0);
+
 }

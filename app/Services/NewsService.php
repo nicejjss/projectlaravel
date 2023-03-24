@@ -5,27 +5,25 @@ namespace App\Services;
 
 
 use App\Models\News;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class NewsService
 {
 
     public function index()
     {
-        return News::paginate(PER_PAGE);
+        return News::visible()->paginate(PER_PAGE);
     }
 
-    public function add($request)
+    public function add($data)
     {
-        $data = $request->all();
-        $imgName = time() . $data['img']->getClientOriginalName();
-        $request->img->move(public_path('upload/news/'), $imgName);
+        $imgPath = $this->uploadImage($data);
         News::create([
             'title' => $data['title'],
             'description' => $data['description'],
             'content' => $data['content'],
-            'img' => $imgName,
+            'img' => $imgPath,
+            'visible' => FLAG_ON,
         ]);
     }
 
@@ -34,28 +32,39 @@ class NewsService
         return News::find($id);
     }
 
-    public function edit($request, $news)
+    public function edit($data, $newsId)
     {
-        $data = $request->all();
-        if (File::exists(public_path('upload/news/' . $news->img))) {
-            File::delete(public_path('upload/news/' . $news->img));
+        $news = News::find($newsId);
+        $imgPath = '';
+        if (empty($data['img'])) {
+            $imgPath = $news->img;
+        } else {
+            if (File::exists(public_path('upload/product/' . $news->img))) {
+                File::delete(public_path('upload/product/' . $news->img));
+            }
+            $imgPath = $this->uploadImage($data);
         }
-        $imgName = time() . $data['img']->getClientOriginalName();
-        $request->img->move(public_path('upload/news/'), $imgName);
         $news->update([
             'title' => $data['title'],
             'description' => $data['description'],
             'content' => $data['content'],
-            'img' => $imgName,
+            'img' => $imgPath,
         ]);
     }
+
+    public function uploadImage($data)
+    {
+        $imgFile = $data['img'];
+        $imgPath = time() . $imgFile->getClientOriginalName();
+        $imgFile->move(public_path('upload/news/'), $imgPath);
+        return $imgPath;
+    }
+
     public function delete($id)
     {
         $news = News::find($id);
-        if (File::exists(public_path('upload/news/' . $news->img))) {
-            File::delete(public_path('upload/news/' . $news->img));
-        }
-        $news->delete();
+        $news->visible = FLAG_OFF;
+        $news->save();
     }
 
 }

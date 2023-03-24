@@ -10,7 +10,8 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -21,12 +22,13 @@
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Home</a></li>
-                <li class="active"><a href="">Danh mục sản phẩm</a></li>
-                <li class="active"><a href="">Danh sách sản phẩm</a></li>
+                <li class="active"><a href="{{route('admin.categories')}}">Danh mục sản phẩm</a></li>
+                <li class="active"><a href="{{route('admin.products')}}">Danh sách sản phẩm</a></li>
                 <li class="active"><a href="{{route('admin.news')}}">Tin tức</a></li>
                 <li class="active"><a href="admin.php?controller=order">Đơn hàng</a></li>
                 <li class="active"><a href="admin.php?controller=customer">Customer</a></li>
-                <li class="active"><a href="">Logout</a></li>
+                <li class="active"><a href="{{route('admin.logout')}}">Logout</a></li>
+
             </ul>
         </div><!--/.nav-collapse -->
     </div>

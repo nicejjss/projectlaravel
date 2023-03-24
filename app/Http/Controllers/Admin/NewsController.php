@@ -30,7 +30,7 @@ class NewsController extends Controller
 
     public function add(NewsRequest $request)
     {
-        $this->newsService->add($request);
+        $this->newsService->add($request->validated());
         return redirect()->route('admin.news');
     }
 
@@ -40,10 +40,9 @@ class NewsController extends Controller
         return view('admin.news.edit')->with(['news'=>$news]);
     }
 
-    public function edit(NewsRequest $request, $news)
+    public function edit(NewsRequest $request, $newsId)
     {
-        $news = $this->newsService->view($news);
-        $this->newsService->edit($request, $news);
+        $this->newsService->edit($request->validated(), $newsId);
         return redirect()->route('admin.news');
     }
 
