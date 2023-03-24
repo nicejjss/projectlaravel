@@ -31,8 +31,8 @@ class OrderService
 
     public function update($data)
     {
-        $keys = array_keys($data);
-        $orders = Order::whereIn('id', $keys)->get();
+        $orderIds = array_keys($data);
+        $orders = Order::whereIn('id', $orderIds)->get();
 
         foreach ($orders as $order) {
             if (isset($data[$order->id])) {
