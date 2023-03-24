@@ -22,7 +22,7 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Home</a></li>
                 <li class="active"><a href="{{route('admin.categories')}}">Danh mục sản phẩm</a></li>
-                <li class="active"><a href="admin.php?controller=product">Danh sách sản phẩm</a></li>
+                <li class="active"><a href="{{route('admin.products')}}">Danh sách sản phẩm</a></li>
                 <li class="active"><a href="admin.php?controller=news">Tin tức</a></li>
                 <li class="active"><a href="admin.php?controller=order">Đơn hàng</a></li>
                 <li class="active"><a href="admin.php?controller=customer">Customer</a></li>

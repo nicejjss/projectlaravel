@@ -20,6 +20,10 @@ class CategoryService
         return $categories;
     }
 
+    public function getAll(){
+        return Category::where('visible',FLAG_ON)->get();
+    }
+
     public function add($request)
     {
         Category::create([

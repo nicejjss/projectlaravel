@@ -4,6 +4,8 @@ use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\LogoutController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\ProductController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,6 +37,19 @@ Route::prefix('admin')->group(function () {
             Route::put('category/edit/{id?}', 'edit');
 
             Route::get('/category/delete/{id?}', 'delete')->name('admin.category.delete');
+        });
+
+        Route::controller(ProductController::class)->group(function () {
+
+            Route::get('/products', 'index')->name('admin.products');
+
+            Route::get('/product/add', 'addView')->name('admin.product.add');
+            Route::post('/product/add', 'add');
+
+            Route::get('/product/edit/{id?}', 'editView')->name('admin.product.edit');
+            Route::put('product/edit/{id?}', 'edit');
+
+            Route::get('/product/delete/{id?}', 'delete')->name('admin.product.delete');
         });
 
 
