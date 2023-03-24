@@ -1,6 +1,13 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,14 +20,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-use \App\Http\Controllers\HomeController;
-use \App\Http\Controllers\ProductController;
-use \App\Http\Controllers\CartController;
-use \App\Http\Controllers\Auth\LogoutController;
-use \App\Http\Controllers\Auth\LoginController;
-use \App\Http\Controllers\Auth\RegisterController;
-use \App\Http\Controllers\CheckoutController;
 
 //Route::get('/', function (){
 //    return view('welcome');

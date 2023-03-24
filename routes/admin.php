@@ -1,13 +1,15 @@
 <?php
 
 
+use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\LogoutController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -53,8 +55,22 @@ Route::prefix('admin')->group(function () {
             Route::get('/product/delete/{id?}', 'delete')->name('admin.product.delete');
         });
 
+        Route::controller(NewsController::class)->group(function () {
+
+            Route::get('/news', 'index')->name('admin.news');
+
+            Route::get('/news/add', 'addView')->name('admin.news.add');
+            Route::post('/news/add', 'add');
+
+            Route::get('/news/edit/{id?}', 'editView')->name('admin.news.edit');
+            Route::put('/news/edit/{id?}', 'edit');
+
+            Route::get('/news/delete/{id?}', 'delete')->name('admin.news.delete');
+        });
+
 
         Route::controller(OrderController::class)->group(function () {
+
             Route::get('/orders', 'index')->name('admin.orders');
 
             Route::get('/order/detail/{id?}', 'detail')->name('admin.order.detail');
@@ -63,16 +79,12 @@ Route::prefix('admin')->group(function () {
 
             Route::get('/order/delete/{id?}', 'delete')->name('admin.order.delete');
         });
-
     });
 
+        Route::controller(LoginController::class)->group(function () {
+            Route::get('/login', 'login')->name('admin.login');
+            Route::post('login', 'check');
+        });
 
-    Route::controller(LoginController::class)->group(function () {
-        Route::get('/login', 'login')->name('admin.login');
-        Route::post('login', 'check');
-    });
-
-    Route::get('/logout', [LogoutController::class, 'logout'])->name('admin.logout');
-
+        Route::get('/logout', [LogoutController::class, 'logout'])->name('admin.logout');
 });
-
