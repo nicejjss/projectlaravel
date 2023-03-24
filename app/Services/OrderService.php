@@ -29,9 +29,9 @@ class OrderService
         ];
     }
 
-    public function update($data)
+    public function update($data, $page)
     {
-        $orders = Order::all();
+        $orders = Order::paginate(PER_PAGE, ['*'], 'page', $page);
 
         foreach ($orders as $order) {
             if (isset($data['order_' . $order->id])) {

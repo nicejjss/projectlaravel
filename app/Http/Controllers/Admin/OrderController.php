@@ -27,10 +27,10 @@ class OrderController extends Controller
         return view('admin.orders.detail')->with(['data' => $data]);
     }
 
-    public function update(Request $request)
+    public function update(Request $request,$page)
     {
         $data = $request->all();
-        $this->orderService->update($data);
+        $this->orderService->update($data,$page);
         return redirect()->route('admin.orders');
     }
 

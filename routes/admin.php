@@ -75,7 +75,7 @@ Route::prefix('admin')->group(function () {
 
             Route::get('/order/detail/{id?}', 'detail')->name('admin.order.detail');
 
-            Route::put('/orders/update', 'update')->name('admin.orders.update');
+            Route::put('/orders/update/{page?}', 'update')->name('admin.orders.update');
 
             Route::get('/order/delete/{id?}', 'delete')->name('admin.order.delete');
         });

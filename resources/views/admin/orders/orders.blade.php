@@ -5,7 +5,7 @@
         <div class="panel panel-primary">
             <div class="panel-heading">Đơn Hàng</div>
             <div class="panel-body">
-                <form action="{{route('admin.orders.update')}}" method="post">
+                <form action="{{route('admin.orders.update',$orders->currentPage())}}" method="post">
                     @csrf
                     @method('put')
                     <table class="table table-hover table-bordered">
