@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class News extends Model
 {
@@ -29,5 +30,4 @@ class News extends Model
     {
         return $query->where('visible', FLAG_ON);
     }
-
 }

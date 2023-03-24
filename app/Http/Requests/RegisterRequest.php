@@ -34,7 +34,7 @@ class RegisterRequest extends FormRequest
         return [
             'max'=>":attribute isn't longer than :max characters",
             'min'=>":attribute isn't shorter than :min characters",
-            'required'=>':attribute must require',
+            'required'=>':attribute require',
         ];
     }
 

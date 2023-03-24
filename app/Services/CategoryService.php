@@ -53,6 +53,7 @@ class CategoryService
     {
         $category = Category::find($id);
         $category->visible = FLAG_OFF;
+        $category->home = FLAG_OFF;
         $category->save();
     }
 

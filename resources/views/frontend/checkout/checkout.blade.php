@@ -1,6 +1,9 @@
 @extends('layouts.layout')
 @section('content')
 <h1>Hóa Đơn Thanh Toán</h1>
+@if(empty($products))
+    <p style="margin-top: 20px; font-size: 20px">Khong Co San Pham Nao</p>
+@else
 <form method="post" action="{{route('checkout.pay')}}" style="margin-top: 20px">
     @csrf
     <label>Ho Ten: </label> <label>{{auth('customer')->user()->name}}</label>
@@ -45,4 +48,5 @@
            <input type="submit" value="Thanh Toan Hoa Don"></div>
     </div>
 </form>
+@endif
 @endsection

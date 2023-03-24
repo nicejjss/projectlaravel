@@ -53,10 +53,10 @@ Route::prefix('admin')->group(function () {
             Route::put('product/edit/{id?}', 'edit');
 
             Route::get('/product/delete/{id?}', 'delete')->name('admin.product.delete');
+
         });
 
         Route::controller(NewsController::class)->group(function () {
-
             Route::get('/news', 'index')->name('admin.news');
 
             Route::get('/news/add', 'addView')->name('admin.news.add');
