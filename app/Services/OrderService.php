@@ -29,14 +29,15 @@ class OrderService
         ];
     }
 
-    public function update($data, $page)
+    public function update($data)
     {
-        $orders = Order::paginate(PER_PAGE, ['*'], 'page', $page);
+        $keys = array_keys($data);
+        $orders = Order::whereIn('id', $keys)->get();
 
         foreach ($orders as $order) {
-            if (isset($data['order_' . $order->id])) {
+            if (isset($data[$order->id])) {
                 $order->update([
-                    'status' => $data['order_' . $order->id],
+                    'status' => $data[$order->id],
                 ]);
             }
         }

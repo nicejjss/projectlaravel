@@ -5,7 +5,7 @@
         <div class="panel panel-primary">
             <div class="panel-heading">Đơn Hàng</div>
             <div class="panel-body">
-                <form action="{{route('admin.orders.update',$orders->currentPage())}}" method="post">
+                <form action="{{route('admin.orders.update')}}" method="post">
                     @csrf
                     @method('put')
                     <table class="table table-hover table-bordered">
@@ -23,7 +23,7 @@
                             <td>{{$order->name}}</td>
                             <td>{{$order->buy_date}}</td>
                             <td>
-                                <input style="width: 100%" width="100%" name="order_{{$order->id}}" type="number" id="qty" min="0" max="1" class="input-control" value="{{$order->status?1:0}}" required="Không thể để trống">
+                                <input style="width: 100%" width="100%" name="{{$order->id}}" type="number" id="qty" min="0" max="1" class="input-control" value="{{$order->status?1:0}}" required="Không thể để trống">
                             </td>
                             <td><a href="{{route('admin.order.detail',['id'=>$order->id])}}">Detail</a></td>
                             <td><a href="{{route('admin.order.delete',['id'=>$order->id])}}">Delete</a></td>
