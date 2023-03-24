@@ -4,9 +4,10 @@ use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\LogoutController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\ProductController;
-
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -50,9 +51,21 @@ Route::prefix('admin')->group(function () {
             Route::put('product/edit/{id?}', 'edit');
 
             Route::get('/product/delete/{id?}', 'delete')->name('admin.product.delete');
+
         });
 
+        Route::controller(NewsController::class)->group(function () {
+            Route::get('/news', 'index')->name('admin.news');
 
+            Route::get('/news/add', 'addView')->name('admin.news.add');
+            Route::post('/news/add', 'add');
+
+            Route::get('/news/edit/{id?}', 'editView')->name('admin.news.edit');
+            Route::put('/news/edit/{id?}', 'edit');
+
+            Route::get('/news/delete/{id?}', 'delete')->name('admin.news.delete');
+
+        });
     });
 
     Route::controller(LoginController::class)->group(function () {
