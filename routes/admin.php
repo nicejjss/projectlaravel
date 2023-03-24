@@ -10,7 +10,6 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
-use App\Models\Customer;
 use Illuminate\Support\Facades\Route;
 
 
