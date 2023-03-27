@@ -1,7 +1,6 @@
 <?php
 
 
-
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\LogoutController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -11,8 +10,6 @@ use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -58,7 +55,6 @@ Route::prefix('admin')->group(function () {
             Route::put('product/edit/{id?}', 'edit');
 
             Route::get('/product/delete/{id?}', 'delete')->name('admin.product.delete');
-
         });
 
         Route::controller(NewsController::class)->group(function () {
@@ -94,15 +90,12 @@ Route::prefix('admin')->group(function () {
 
             Route::get('/customer/delete/{id?}', 'delete')->name('admin.customer.delete');
         });
-
-
     });
 
-        Route::controller(LoginController::class)->group(function () {
-            Route::get('/login', 'login')->name('admin.login');
-            Route::post('login', 'check');
-        });
+    Route::controller(LoginController::class)->group(function () {
+        Route::get('/login', 'login')->name('admin.login');
+        Route::post('login', 'check');
+    });
 
-        Route::get('/logout', [LogoutController::class, 'logout'])->name('admin.logout');
-
+    Route::get('/logout', [LogoutController::class, 'logout'])->name('admin.logout');
 });

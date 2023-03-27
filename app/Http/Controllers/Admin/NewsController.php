@@ -19,8 +19,8 @@ class NewsController extends Controller
     public function index()
     {
         $listNews = $this->newsService->index();
-        
-        return view('admin.news')->with(['listNews' => $listNews]);
+
+        return view('admin.news.news')->with(['listNews' => $listNews]);
     }
 
     public function addView()
@@ -31,7 +31,7 @@ class NewsController extends Controller
     public function add(NewsRequest $request)
     {
         $this->newsService->add($request->validated());
-        return redirect()->route('admin.news');
+        return redirect()->route('admin.news.news');
     }
 
     public function editView($id)
@@ -43,12 +43,12 @@ class NewsController extends Controller
     public function edit(NewsRequest $request, $newsId)
     {
         $this->newsService->edit($request->validated(), $newsId);
-        return redirect()->route('admin.news');
+        return redirect()->route('admin.news.news');
     }
 
     public function delete($id)
     {
         $this->newsService->delete($id);
-        return redirect()->route('admin.news');
+        return redirect()->route('admin.news.news');
     }
 }
