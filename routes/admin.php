@@ -75,7 +75,7 @@ Route::prefix('admin')->group(function () {
 
             Route::get('/order/detail/{id?}', 'detail')->name('admin.order.detail');
 
-            Route::put('/orders/update/{page?}', 'update')->name('admin.orders.update');
+            Route::put('/orders/update', 'update')->name('admin.orders.update');
 
             Route::get('/order/delete/{id?}', 'delete')->name('admin.order.delete');
         });
@@ -83,10 +83,6 @@ Route::prefix('admin')->group(function () {
         Route::controller(CustomerController::class)->group(function () {
 
             Route::get('/customers', 'index')->name('admin.customers');
-
-            Route::get('/customer/detail/{id?}', 'detail')->name('admin.customer.detail');
-
-            Route::put('/customers/update/{page?}', 'update')->name('admin.customers.update');
 
             Route::get('/customer/delete/{id?}', 'delete')->name('admin.customer.delete');
         });
