@@ -50,7 +50,7 @@
                         <div class="col-md-10">
                             <input type="submit" value="Thêm Sản Phẩm" class="btn btn-primary">
                             <input type="reset" value="Reset" class="btn btn-danger">
-                            <a href="admin.php?controller=product" class="btn btn-warningr"> Huy </a>
+                            <a href="{{route('admin.products')}}" class="btn btn-warningr"> Huy </a>
                         </div>
 
                     </div>

@@ -32,7 +32,6 @@ Route::controller(ProductController::class)->group(function () {
     Route::get('/category/{id?}', 'showWithCate')->name('category');
     Route::get('/product/{id?}', 'find')->name('product');
     Route::get('/search', 'findWithSearch')->name('product.search');
-
 });
 Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 

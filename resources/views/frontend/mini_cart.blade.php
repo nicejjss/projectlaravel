@@ -14,7 +14,7 @@
                                 <h3><a href="{{route('product',['id'=>$key])}}">{{$cartProduct['name']}}</a></h3>
                                 <p>{{$cartProduct['quantity']}} x {{ number_format($cartProduct["price"],0,'','.')}}₫</p>
                             </div>
-                            <div> <a href="{{route('checkout.pay')}}"> <i class="fa fa-times"></i></a> </div>
+                            <div> <a href="{{route('cart.delete',['id'=>$key])}}"> <i class="fa fa-times"></i></a> </div>
                         </li>
                         @endforeach
                     @endif
