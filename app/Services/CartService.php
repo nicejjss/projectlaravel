@@ -20,12 +20,14 @@ class CartService
     public function totalPrice($cartProduct)
     {
         $total = 0;
+
         if (!empty($cartProduct)) {
-            foreach ($cartProduct as $ket => $product) {
+            foreach ($cartProduct as $key => $product) {
                 $eachprice = $product['price'] * $product['quantity'];
                 $total += $eachprice;
             }
         }
+
         return $total;
     }
 

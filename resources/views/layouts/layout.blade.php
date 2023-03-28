@@ -1,5 +1,5 @@
 <?php ob_start(); ?>
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html en="vi">
 <head>
     <title>DKT Store</title>
@@ -54,8 +54,8 @@
                         {{--var id = <?php echo  $_SESSION["customer_id"]?>;--}}
                         // console.log("ID Uer: "+ id);
                     </script>
-                   @auth('customer')
-                        <a href="index.php?controller=customer&act=edit&id=<?php if(isset($_SESSION['customer_id']) ) echo $_SESSION["customer_id"] ?>">
+                    @auth('customer')
+                        <a href="index.php?controller=customer&act=edit&id=<?php if (isset($_SESSION['customer_id'])) echo $_SESSION["customer_id"] ?>">
                             <i class="fa fa-user"></i>{{auth('customer')->user()->name}}</a>
                         <a href="{{route('logout')}}"><i class="fa fa-user"></i>Logout</a>
                     @else
@@ -74,23 +74,21 @@
                             src="./../public/frontend/100/047/633/themes/517833/assets/logo221b.png?1481775169361"
                             alt="DKT Store" title="DKT Store" class="img-responsive"> </a></div>
                 <div class="col-xs-12 col-sm-12 col-md-6 header-search">
-{{--                    <script type="text/javascript">--}}
-{{--                        function search() {--}}
-{{--                            key = document.getElementById("key").value;--}}
-
-{{--                            location.href = 'search/'+key;--}}
-
-{{--                            return false;--}}
-{{--                        }--}}
-{{--                    </script>--}}
+                    <script type="text/javascript">
+                        // function search() {
+                        //     key = document.getElementById("key").value;
+                        //     location.href = "search/" + key;
+                        //     return false;
+                        // }
+                    </script>
                     <form method="get" action="{{route('product.search')}}">
                         <input name="search" type="text" value="" placeholder="Nhập từ khóa tìm kiếm..." id="key"
                                class="input-control">
-                        <button onclick="return search();" type="submit"><i class="fa fa-search" ></i></button>
+                        <button type="submit"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-3 mini-cart">
-                                @include('frontend.mini_cart')
+                    @include('frontend.mini_cart')
                 </div>
             </div>
         </div>
@@ -155,13 +153,13 @@
                 <!-- end support online -->
                 <!-- hot news -->
                 <div class="home-blog">
-                    <h2 class="title"> <span>Tin tức</span></h2>
+                    <h2 class="title"><span>Tin tức</span></h2>
                     <div class="row">
                         <div class="owl-home-blog owl-home-blog-sidebar">
-<!--                            list hot news-->
+                            <!--                            list hot news-->
 
-                           @include('frontend.news_layout')
-                            <!-- end list hot news -->
+                        @include('frontend.news_layout')
+                        <!-- end list hot news -->
                         </div>
                     </div>
                 </div>
@@ -173,7 +171,7 @@
             </div>
             <div class="col-xs-12 col-md-9">
                 <!-- main -->
-              @include('frontend.slider')
+                @include('frontend.slider')
                 @yield('content');
                 <!-- end main -->
             </div>

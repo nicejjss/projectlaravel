@@ -43,6 +43,4 @@ class ProductController extends Controller
         $products = $this->productService->findWithSearch($request->input('search'));
         return view('frontend.search.search')->with(['search' => $request->input('search'), 'products' => $products]);
     }
-
-
 }
