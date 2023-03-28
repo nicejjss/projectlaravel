@@ -1,24 +1,22 @@
 <?php
 
-
 namespace App\Services;
-
 
 use App\Models\Customer;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 
 class CustomerService
 {
-
+    public function index()
+    {
+        return Customer::visible()->paginate(PER_PAGE);
+    }
 
     public function checkExist($data)
     {
-        if (Customer::where('name', '=', $data['name'])->first() || Customer::where('email', '=', $data['email'])->first()) {
-            return true;
-        }
-        return false;
+        return Customer::where('name', '=', $data['name'])->first() ||
+            Customer::where('email', '=', $data['email'])->first();
     }
 
     public function create($data)
@@ -28,7 +26,7 @@ class CustomerService
             'password' => Hash::make($data['password']),
             'address' => $data['address'],
             'phone' => $data['phone'],
-            'email' => $data['email']
+            'email' => $data['email'],
         ]);
     }
 
@@ -36,10 +34,12 @@ class CustomerService
     {
         $name = $request->input('name');
         $password = $request->input('password');
+
         if (Auth::guard('customer')->attempt(['name' => $name, 'password' => $password])) {
             return redirect()->route('home');
         }
-        return view('frontend.auth.login',['errMsg' => "Wrong PassWord"]);
+
+        return view('frontend.auth.login', ['errMsg' => "Wrong PassWord"]);
     }
 
     public function register($data)
@@ -53,7 +53,12 @@ class CustomerService
         $user = $this->create($data);
         Auth::guard('customer')->loginUsingId($user->id);
         return redirect()->intended();
-
     }
 
+    public function delete($id)
+    {
+        $customer = Customer::find($id);
+        $customer->visible = FLAG_OFF;
+        $customer->save();
+    }
 }

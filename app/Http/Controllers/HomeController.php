@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\CategoryService;
 use App\Services\ProductService;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    //
     protected $productService;
 
     public function __construct(ProductService $productSevice)

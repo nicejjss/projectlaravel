@@ -15,7 +15,8 @@ class ProductService
 
     public function index()
     {
-        return Product::visible()->select('products.id', 'img', 'products.name as product_name', 'categories.name as category_name', 'price')
+        return Product::visible()
+            ->select('products.id', 'img', 'products.name as product_name', 'categories.name as category_name', 'price')
             ->join('categories', 'categories.id', '=', 'products.category_id')->paginate(PER_PAGE);
     }
 

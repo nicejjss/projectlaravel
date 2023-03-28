@@ -26,9 +26,8 @@
                 <li class="active"><a href="{{route('admin.products')}}">Danh sách sản phẩm</a></li>
                 <li class="active"><a href="{{route('admin.news')}}">Tin tức</a></li>
                 <li class="active"><a href="{{route('admin.orders')}}">Đơn hàng</a></li>
-                <li class="active"><a href="admin.php?controller=customer">Customer</a></li>
+                <li class="active"><a href="{{route('admin.customers')}}">Customer</a></li>
                 <li class="active"><a href="{{route('admin.logout')}}">Logout</a></li>
-
             </ul>
         </div><!--/.nav-collapse -->
     </div>
