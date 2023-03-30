@@ -8,7 +8,7 @@
         <div class="info">
             <h3><a href="index.php?controller=news_detail&id={{$newsItem->id}}">{{$newsItem->name}}</a></h3>
             <p class="desc">
-            <p>{{$newsItem->description}}</p>
+            <p>{!! $newsItem->description !!}</p>
             </p>
         </div>
     </div>

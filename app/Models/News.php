@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 
 class News extends Model
 {
@@ -22,7 +23,9 @@ class News extends Model
 
     public static function index()
     {
-        return News::all();
+        return Cache::remember('news',DAY,function (){
+            return  News::where('visible',FLAG_ON)->get();
+        });
     }
 
     public function scopeVisible(Builder $query)

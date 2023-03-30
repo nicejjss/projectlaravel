@@ -23,11 +23,11 @@ class ProductRequest extends FormRequest
     {
         return [
             'img' => 'image|mimes:png,jpg,jpeg|max:2048',
-            'name'=>'required',
-            'description'=>'required',
-            'content'=>'required',
-            'price'=>'required',
-            'category_id'=>'required',
+            'name' => 'required',
+            'description' => 'required',
+            'content' => 'required',
+            'price' => 'required',
+            'category_id' => 'required',
         ];
     }
 }

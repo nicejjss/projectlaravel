@@ -1,18 +1,15 @@
 <?php
 
-
 namespace App\Services;
-
 
 use App\Models\Product;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\File;
 
 class ProductService
 {
-
     public function index()
     {
         return Product::visible()
@@ -51,14 +48,12 @@ class ProductService
 
     public function view($id)
     {
-        return Product::find($id);
+        return Product::visible()->find($id);
     }
 
     public function edit($data, $productId)
     {
         $product = Product::find($productId);
-
-
         $imgPath = '';
 
         if (empty($data['img'])) {
@@ -98,19 +93,21 @@ class ProductService
 
     public function hotProducts()
     {
-        config()->set('database.connections.mysql.strict', false);
-        DB::reconnect();
+        $hotProducts = Cache::remember('hotProducts', DAY, static function () {
 
-        $products = Product::select('*', DB::raw('sum(order_details.number) as totalnumber'))
-            ->join('order_details', 'order_details.product_id', 'products.id')
-            ->groupBy('products.id')->orderByDesc('totalnumber')->get()->toArray();
+            $hotProducts = Product::select('products.id', 'products.name', 'products.price', 'products.img')
+                ->join('order_details', 'order_details.product_id', 'products.id')
+                ->groupBy('products.id', 'products.name', 'products.price', 'products.img')
+                ->orderBy('number', 'desc')->get();
 
-        config()->set('database.connections.mysql.strict', true);
-        DB::reconnect();
+            foreach ($hotProducts as $hotProduct) {
+                $hotProduct->number = $hotProduct->orderdetails()->sum('order_details.number');
+            }
 
-        $products = $this->paginate($products);
+            return $hotProducts;
+        });
 
-        return $products;
+        return $this->paginate($hotProducts->toArray());
     }
 
     public function paginate($collection, $perPage = PER_PAGE, $page = null)

@@ -5,8 +5,6 @@ namespace App\Providers;
 use App\Models\Category;
 use App\Models\News;
 use App\Models\Slider;
-use App\Services\CategoryService;
-use App\Services\NewsService;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 

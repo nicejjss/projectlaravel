@@ -1,10 +1,9 @@
 <?php
 
-
 namespace App\Services;
 
-
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 
@@ -14,8 +13,7 @@ class CategoryService
     {
         $categories = Category::where('visible', FLAG_ON)->paginate(PER_PAGE);
 
-        foreach ($categories as $category)
-        {
+        foreach ($categories as $category) {
             $category->totalNumber = $category->products->count();
         }
 
@@ -54,6 +52,7 @@ class CategoryService
         $category = Category::find($id);
         $category->visible = FLAG_OFF;
         $category->home = FLAG_OFF;
+        Product::where('category_id', $id)->update(['visible' => FLAG_OFF]);
         $category->save();
     }
 

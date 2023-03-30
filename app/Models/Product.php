@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 
 class Product extends Model
 {
@@ -12,15 +12,13 @@ class Product extends Model
 
     protected $table = 'products';
     public $timestamps = false;
-
-
     protected $fillable = [
         'name',
         'category_id',
         'description',
         'content',
         'img',
-        'price'
+        'price',
     ];
 
     public function category()
@@ -33,8 +31,14 @@ class Product extends Model
         return $this->belongsToMany(Order::class, 'order_details', 'product_id', 'order_id')->withPivot('number');
     }
 
-    public function scopeVisible(Builder $query){
-        return $query->where('products.visible',FLAG_ON);
+    public function orderDetails()
+    {
+        return $this->hasMany(OrderDetail::class, 'product_id', 'id');
+    }
+
+    public function scopeVisible(Builder $query)
+    {
+        return $query->where('products.visible', FLAG_ON);
     }
 
 }
