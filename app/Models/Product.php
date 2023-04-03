@@ -12,7 +12,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    const PRODUCT_CACHE='hotProducts';
+    const PRODUCT_CACHE = 'hotProducts';
     protected $table = 'products';
     public $timestamps = false;
     protected $fillable = [
