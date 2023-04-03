@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
 class ProductService
@@ -95,12 +96,17 @@ class ProductService
     {
         $hotProducts = Cache::remember('hotProducts', DAY, static function () {
 
-            return Product::select('products.id')
-                ->join('order_details', 'order_details.product_id', 'products.id')
-                ->groupBy('products.id')->get();
+            return Product::hotproducts();
         });
+        $listHotProduct = [];
 
-        return Product::whereIn('id', $hotProducts->toArray())->where('visible',FLAG_ON)->paginate(PER_PAGE);
+        foreach ($hotProducts as $hotProduct) {
+            $listHotProduct [] = $hotProduct->id;
+        }
+
+        $listHotProduct = implode(',', $listHotProduct);
+        return Product::whereIn('id', $hotProducts->toArray())
+            ->orderBy(DB::raw('FIELD(id,' . $listHotProduct . ')'))->paginate(PER_PAGE);
     }
 
     public function paginate($collection, $perPage = PER_PAGE, $page = null)
