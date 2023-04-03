@@ -95,19 +95,12 @@ class ProductService
     {
         $hotProducts = Cache::remember('hotProducts', DAY, static function () {
 
-            $hotProducts = Product::select('products.id', 'products.name', 'products.price', 'products.img')
+            return Product::select('products.id')
                 ->join('order_details', 'order_details.product_id', 'products.id')
-                ->groupBy('products.id', 'products.name', 'products.price', 'products.img')
-                ->orderBy('number', 'desc')->get();
-
-            foreach ($hotProducts as $hotProduct) {
-                $hotProduct->number = $hotProduct->orderdetails()->sum('order_details.number');
-            }
-
-            return $hotProducts;
+                ->groupBy('products.id')->get();
         });
 
-        return $this->paginate($hotProducts->toArray());
+        return Product::whereIn('id', $hotProducts->toArray())->where('visible',FLAG_ON)->paginate(PER_PAGE);
     }
 
     public function paginate($collection, $perPage = PER_PAGE, $page = null)

@@ -70,5 +70,4 @@ class NewsService
         $news->visible = FLAG_OFF;
         $news->save();
     }
-
 }
