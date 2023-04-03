@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Models\Product;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
@@ -94,17 +93,8 @@ class ProductService
 
     public function hotProducts()
     {
-        $hotProducts = Cache::remember('hotProducts', DAY, static function () {
-
-            return Product::hotproducts();
-        });
-        $listHotProduct = [];
-
-        foreach ($hotProducts as $hotProduct) {
-            $listHotProduct [] = $hotProduct->id;
-        }
-
-        $listHotProduct = implode(',', $listHotProduct);
+        $hotProducts = Product::hotproducts();
+        $listHotProduct = implode(',', $hotProducts->pluck('id')->toArray());
         return Product::whereIn('id', $hotProducts->toArray())
             ->orderBy(DB::raw('FIELD(id,' . $listHotProduct . ')'))->paginate(PER_PAGE);
     }

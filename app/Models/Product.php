@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 class Product extends Model
 {
     use HasFactory;
 
+    const PRODUCT_CACHE='hotProducts';
     protected $table = 'products';
     public $timestamps = false;
     protected $fillable = [
@@ -44,11 +46,13 @@ class Product extends Model
 
     public static function hotProducts()
     {
-        return Product::join('order_details', 'order_details.product_id', 'products.id')
-            ->select("products.id")
-            ->visible()
-            ->orderBy(DB::raw('SUM( order_details.number)'), "desc")
-            ->groupBy("products.id")
-            ->get();
+        return Cache::remember(Product::PRODUCT_CACHE, DAY, static function () {
+            return Product::join('order_details', 'order_details.product_id', 'products.id')
+                ->select("products.id")
+                ->visible()
+                ->orderBy(DB::raw('SUM( order_details.number)'), "desc")
+                ->groupBy("products.id")
+                ->get();
+        });
     }
 }
