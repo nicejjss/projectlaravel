@@ -1,4 +1,4 @@
-admin.news.news<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Admin</title>
