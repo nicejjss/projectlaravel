@@ -17,7 +17,7 @@ class Kernel extends ConsoleKernel
         $schedule->call(function (){
             $dateDeleted = Carbon::now()->addMonth(-3);
             News::where('date_created','<',$dateDeleted)->delete();
-        });
+        })->daily();
     }
 
     /**
