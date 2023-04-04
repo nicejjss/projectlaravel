@@ -94,8 +94,8 @@ class ProductService
     public function hotProducts()
     {
         $hotProducts = Product::hotproducts();
-        $listHotProduct = implode(',', $hotProducts->pluck('id')->toArray());
-        return Product::whereIn('id', $hotProducts->toArray())
+        $listHotProduct = implode(',', $hotProducts);
+        return Product::whereIn('id', $hotProducts)
             ->orderBy(DB::raw('FIELD(id,' . $listHotProduct . ')'))->paginate(PER_PAGE);
     }
 

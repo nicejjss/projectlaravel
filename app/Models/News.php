@@ -29,6 +29,12 @@ class News extends Model
         News::updated(function () {
             Cache::delete(News::NEWS_CACHE);
         });
+        News::created(function () {
+            Cache::delete(News::NEWS_CACHE);
+        });
+        News::saved(function () {
+            Cache::delete(News::NEWS_CACHE);
+        });
     }
 
     public static function index()
