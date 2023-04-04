@@ -8,6 +8,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProductController;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +25,10 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/', function (){
 //    return view('welcome');
 //});
+
+Route::get('/welcome',function (){
+   return view('welcome');
+});
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -58,4 +63,5 @@ Route::controller(RegisterController::class)->group(function () {
 });
 
 Route::get('/news', [NewsController::class, 'index'])->name('news');
+
 

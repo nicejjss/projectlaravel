@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Services;
-
 
 use App\Models\Product;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -12,7 +10,6 @@ use Illuminate\Support\Facades\File;
 
 class ProductService
 {
-
     public function index()
     {
         return Product::visible()
@@ -51,14 +48,12 @@ class ProductService
 
     public function view($id)
     {
-        return Product::find($id);
+        return Product::visible()->find($id);
     }
 
     public function edit($data, $productId)
     {
         $product = Product::find($productId);
-
-
         $imgPath = '';
 
         if (empty($data['img'])) {
@@ -98,19 +93,10 @@ class ProductService
 
     public function hotProducts()
     {
-        config()->set('database.connections.mysql.strict', false);
-        DB::reconnect();
-
-        $products = Product::select('*', DB::raw('sum(order_details.number) as totalnumber'))
-            ->join('order_details', 'order_details.product_id', 'products.id')
-            ->groupBy('products.id')->orderByDesc('totalnumber')->get()->toArray();
-
-        config()->set('database.connections.mysql.strict', true);
-        DB::reconnect();
-
-        $products = $this->paginate($products);
-
-        return $products;
+        $hotProducts = Product::hotproducts();
+        $listHotProduct = implode(',', $hotProducts);
+        return Product::whereIn('id', $hotProducts)
+            ->orderBy(DB::raw('FIELD(id,' . $listHotProduct . ')'))->paginate(PER_PAGE);
     }
 
     public function paginate($collection, $perPage = PER_PAGE, $page = null)

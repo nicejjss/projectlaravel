@@ -13,6 +13,7 @@ class CheckoutService
 {
     use CartTrait;
 
+
     public function pay()
     {
         $cartProducts = $this->index();

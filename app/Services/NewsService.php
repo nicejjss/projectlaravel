@@ -7,6 +7,7 @@ namespace App\Services;
 use App\Models\News;
 use Illuminate\Support\Facades\File;
 
+
 class NewsService
 {
 
@@ -69,5 +70,4 @@ class NewsService
         $news->visible = FLAG_OFF;
         $news->save();
     }
-
 }

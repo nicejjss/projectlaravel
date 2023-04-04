@@ -46,10 +46,10 @@ return [
             'provider' => 'users',
         ],
 
-        'customer'=>[
-            'driver' =>'session',
-            'provider' =>  'customers'
-        ]
+        'customer' => [
+            'driver' => 'session',
+            'provider' => 'customers',
+        ],
 
     ],
 
