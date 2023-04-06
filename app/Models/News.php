@@ -12,8 +12,8 @@ class News extends Model
     use HasFactory;
 
     const NEWS_CACHE = 'news';
+
     protected $table = 'news';
-    public $timestamps = false;
 
     protected $fillable = [
         'title',

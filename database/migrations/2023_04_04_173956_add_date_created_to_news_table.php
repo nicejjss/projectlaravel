@@ -13,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('news', function (Blueprint $table) {
-            $table->dateTime('date_created')->default(Carbon::now());
+            $table->timestamps();
         });
     }
 
@@ -23,7 +23,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('news', function (Blueprint $table) {
-            $table->dropColumn('date_created');
+            $table->dropTimestamps();
         });
     }
 };

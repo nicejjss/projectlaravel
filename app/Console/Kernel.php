@@ -15,8 +15,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->call(function () {
-            $dateDeleted = Carbon::now()->subMonth(3);
-            News::where('date_created', '<', $dateDeleted)->delete();
+            $dateDeleted = Carbon::now()->subMonths(3);
+            News::where('updated_at', '<', $dateDeleted)->delete();
         })->daily();
     }
 
